@@ -1,0 +1,2643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sachin Raut — Freelance Web Developer & QA Specialist | Mumbai</title>
+  <meta name="description" content="Mumbai-based Full-Stack Developer & QA Specialist. Custom WordPress, Next.js, Technical SEO, CRM/SaaS, and Manual QA Testing services." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    /* ─── RESET & ROOT ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ── DARK THEME (default) ── */
+    :root {
+      --bg:        #06060f;
+      --bg2:       #0d0d1f;
+      --bg3:       #111128;
+      --surface:   rgba(255,255,255,0.04);
+      --border:    rgba(255,255,255,0.08);
+      --purple:    #7c3aed;
+      --purple2:   #a855f7;
+      --cyan:      #06b6d4;
+      --cyan2:     #22d3ee;
+      --green:     #10b981;
+      --yellow:    #f59e0b;
+      --red:       #ef4444;
+      --text:      #f1f5f9;
+      --muted:     #94a3b8;
+      --grad:      linear-gradient(135deg, var(--purple), var(--cyan));
+      --grad2:     linear-gradient(135deg, #7c3aed, #a855f7, #06b6d4);
+      --radius:    16px;
+      --shadow:    0 25px 60px rgba(124,58,237,0.15);
+      --navbar-bg: rgba(6,6,15,0.85);
+      --input-bg:  rgba(255,255,255,0.04);
+      --card-hover-bg: rgba(124,58,237,0.05);
+    }
+
+    /* ── LIGHT THEME ── */
+    html[data-theme="light"] {
+      --bg:        #f0f4ff;
+      --bg2:       #e8eeff;
+      --bg3:       #dde4f8;
+      --surface:   rgba(255,255,255,0.75);
+      --border:    rgba(100,80,200,0.15);
+      --text:      #0f172a;
+      --muted:     #4b5563;
+      --shadow:    0 25px 60px rgba(124,58,237,0.1);
+      --navbar-bg: rgba(240,244,255,0.88);
+      --input-bg:  rgba(255,255,255,0.8);
+      --card-hover-bg: rgba(124,58,237,0.04);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background .4s ease, color .4s ease;
+    }
+    h1,h2,h3,h4,h5 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+    section { padding: 100px 0; }
+
+    /* ─── SCROLLBAR ────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 99px; }
+
+    /* ─── UTILITY ──────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .gradient-text {
+      background: var(--grad2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 99px;
+      font-size: 12px; font-weight: 600; letter-spacing: .5px;
+      border: 1px solid var(--border);
+      background: var(--surface); color: var(--cyan2);
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 99px;
+      font-weight: 600; font-size: 15px;
+      cursor: pointer; border: none; transition: all .3s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--grad);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(124,58,237,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(124,58,237,0.6); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--purple2); color: var(--purple2); transform: translateY(-2px); }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800; margin-bottom: 16px;
+    }
+    .section-desc { color: var(--muted); font-size: 18px; max-width: 600px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all .4s ease;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--grad);
+      opacity: 0; transition: opacity .4s ease;
+      border-radius: var(--radius);
+    }
+    .card:hover { transform: translateY(-6px); border-color: rgba(124,58,237,0.4); box-shadow: var(--shadow); }
+    .card:hover::before { opacity: 0.05; }
+    .card > * { position: relative; z-index: 1; }
+
+    /* ─── CANVAS PARTICLES ─────────────────────────────────── */
+    #particles-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ─── GLOW ORBS ────────────────────────────────────────── */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(100px); pointer-events: none; z-index: 0;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .orb-1 { width: 600px; height: 600px; background: rgba(124,58,237,0.12); top: -200px; right: -200px; animation-delay: 0s; }
+    .orb-2 { width: 400px; height: 400px; background: rgba(6,182,212,0.08); bottom: 0; left: -100px; animation-delay: 4s; }
+    @keyframes orbFloat {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-40px) scale(1.05); }
+    }
+
+    /* ─── NAVBAR ───────────────────────────────────────────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: all .4s ease;
+    }
+    .navbar.scrolled {
+      padding: 12px 0;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── THEME TOGGLE BUTTON ── */
+    .theme-toggle {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      transition: all .3s ease;
+      flex-shrink: 0;
+      backdrop-filter: blur(8px);
+    }
+    .theme-toggle:hover {
+      border-color: var(--purple2);
+      background: rgba(124,58,237,0.1);
+      transform: rotate(20deg) scale(1.1);
+    }
+    /* light mode overrides for key elements */
+    html[data-theme="light"] .card,
+    html[data-theme="light"] .hero-form-card,
+    html[data-theme="light"] .form-card,
+    html[data-theme="light"] .faq-q,
+    html[data-theme="light"] .testi-card,
+    html[data-theme="light"] .portfolio-card,
+    html[data-theme="light"] .webdev-visual-card,
+    html[data-theme="light"] .seo-visual-card,
+    html[data-theme="light"] .bug-report-card,
+    html[data-theme="light"] .contact-link,
+    html[data-theme="light"] .tech-card,
+    html[data-theme="light"] .process-section,
+    html[data-theme="light"] .qa-step,
+    html[data-theme="light"] .webdev-step,
+    html[data-theme="light"] .seo-step,
+    html[data-theme="light"] .faq-item {
+      background: rgba(255,255,255,0.8);
+      border-color: rgba(100,80,200,0.15);
+    }
+    html[data-theme="light"] .qa-section,
+    html[data-theme="light"] .process-section,
+    html[data-theme="light"] .faq-section,
+    html[data-theme="light"] .testimonials-section,
+    html[data-theme="light"] .seo-section {
+      background: var(--bg2);
+    }
+    html[data-theme="light"] input,
+    html[data-theme="light"] textarea,
+    html[data-theme="light"] select {
+      background: var(--input-bg);
+      border-color: rgba(100,80,200,0.2);
+      color: var(--text);
+    }
+    html[data-theme="light"] input::placeholder,
+    html[data-theme="light"] textarea::placeholder { color: #9ca3af; }
+    html[data-theme="light"] .checkbox-label {
+      background: rgba(255,255,255,0.7);
+      border-color: rgba(100,80,200,0.15);
+    }
+    html[data-theme="light"] .orb-1 { background: rgba(124,58,237,0.08); }
+    html[data-theme="light"] .orb-2 { background: rgba(6,182,212,0.06); }
+    html[data-theme="light"] .marquee-section {
+      border-color: rgba(100,80,200,0.15);
+    }
+    html[data-theme="light"] .audit-box {
+      background: linear-gradient(135deg, rgba(124,58,237,0.07), rgba(6,182,212,0.03));
+    }
+    html[data-theme="light"] .hero-card-float {
+      background: rgba(255,255,255,0.8);
+      border-color: rgba(100,80,200,0.15);
+    }
+    html[data-theme="light"] .metric-box {
+      background: rgba(255,255,255,0.6);
+      border-color: rgba(100,80,200,0.12);
+    }
+    html[data-theme="light"] .float-badge {
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(100,80,200,0.15);
+      color: var(--text);
+    }
+    html[data-theme="light"] .webdev-stat {
+      background: rgba(124,58,237,0.06);
+    }
+    html[data-theme="light"] .webdev-perk {
+      background: rgba(124,58,237,0.05);
+    }
+    html[data-theme="light"] .seo-score-ring {
+      background: rgba(245,158,11,0.06);
+    }
+    html[data-theme="light"] .bar-track {
+      background: rgba(0,0,0,0.08);
+    }
+    html[data-theme="light"] .seo-issue {
+      background: rgba(255,255,255,0.6);
+    }
+    html[data-theme="light"] .qa-perk {
+      background: rgba(16,185,129,0.06);
+    }
+    html[data-theme="light"] .faq-item.open .faq-q {
+      background: rgba(124,58,237,0.06);
+    }
+    html[data-theme="light"] footer {
+      background: var(--bg2);
+      border-color: rgba(100,80,200,0.15);
+    }
+    html[data-theme="light"] #progress-bar {
+      opacity: 0.8;
+    }
+    html[data-theme="light"] #particles-canvas {
+      opacity: 0.15;
+    }
+    html[data-theme="light"] .sticky-btn.call,
+    html[data-theme="light"] .sticky-btn.mail {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    html[data-theme="light"] .mobile-menu {
+      background: rgba(240,244,255,0.97);
+    }
+    html[data-theme="light"] .mobile-menu a { color: var(--text); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800; font-size: 22px;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500;
+      color: var(--muted); transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { display: flex; gap: 12px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 0 80px;
+      position: relative; z-index: 1;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1.05fr;
+      gap: 52px; align-items: start;
+    }
+    /* Inline floating card (left side, below trust) */
+    .hero-visual-inline {
+      margin-top: 32px;
+    }
+    /* Hero form right side */
+    .hero-form-side {
+      position: sticky; top: 100px;
+    }
+    .hero-form-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 24px; padding: 32px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 60px rgba(124,58,237,0.1);
+    }
+    .hero-form-header { margin-bottom: 4px; }
+    .hero-label { margin-bottom: 24px; }
+    .hero-title {
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .hero-typed-wrap {
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 600; height: 40px; margin-bottom: 24px;
+    }
+    .typed-cursor { color: var(--purple2); }
+    .hero-desc { color: var(--muted); font-size: 17px; margin-bottom: 36px; max-width: 520px; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-trust {
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; flex-direction: column;
+    }
+    .trust-num {
+      font-size: 28px; font-weight: 800;
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .trust-label { font-size: 12px; color: var(--muted); }
+    .hero-visual {
+      position: relative; display: flex;
+      justify-content: center; align-items: center;
+    }
+    .hero-card-float {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px;
+      width: 100%; max-width: 400px;
+      animation: floatCard 6s ease-in-out infinite;
+      backdrop-filter: blur(10px);
+    }
+    @keyframes floatCard {
+      0%,100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+    .hero-card-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: var(--grad); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 28px; margin-bottom: 20px;
+    }
+    .hero-card-float h3 { font-size: 22px; margin-bottom: 8px; }
+    .hero-card-float p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+    .metric-row { display: flex; gap: 16px; }
+    .metric-box {
+      flex: 1; background: rgba(255,255,255,0.04);
+      border-radius: 12px; padding: 12px;
+      text-align: center; border: 1px solid var(--border);
+    }
+    .metric-box .num { font-size: 22px; font-weight: 800; color: var(--cyan2); }
+    .metric-box .lbl { font-size: 10px; color: var(--muted); }
+    .float-badge {
+      position: absolute; padding: 10px 16px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; font-size: 13px; font-weight: 600;
+      backdrop-filter: blur(10px); display: flex; align-items: center; gap: 8px;
+    }
+    .float-badge-1 { top: -20px; right: -20px; animation: badgeFloat 4s ease-in-out infinite; }
+    .float-badge-2 { bottom: 30px; left: -30px; animation: badgeFloat 4s ease-in-out infinite reverse; }
+    @keyframes badgeFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ─── MARQUEE / TRUSTED BY ─────────────────────────────── */
+    .marquee-section {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; position: relative; z-index: 1;
+    }
+    .marquee-track {
+      display: flex; gap: 60px; width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 600; color: var(--muted);
+      white-space: nowrap;
+    }
+    .marquee-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple2); }
+
+    /* ─── SERVICES ─────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px; margin-top: 60px;
+    }
+    .service-card { cursor: default; }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
+    }
+    .service-card h3 { font-size: 20px; margin-bottom: 10px; }
+    .service-card p { color: var(--muted); font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 4px 12px; border-radius: 99px;
+      font-size: 12px; font-weight: 500;
+      background: rgba(124,58,237,0.1);
+      color: var(--purple2);
+      border: 1px solid rgba(124,58,237,0.2);
+    }
+    .tag.cyan {
+      background: rgba(6,182,212,0.1);
+      color: var(--cyan2);
+      border-color: rgba(6,182,212,0.2);
+    }
+    .tag.green {
+      background: rgba(16,185,129,0.1);
+      color: var(--green);
+      border-color: rgba(16,185,129,0.2);
+    }
+    .service-highlight {
+      border-color: rgba(124,58,237,0.3) !important;
+      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.04)) !important;
+    }
+
+    /* ─── WEB DEV SECTION ─────────────────────────────────── */
+    .webdev-section { position: relative; z-index: 1; }
+    .webdev-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 80px; align-items: center; margin-top: 60px;
+    }
+    .webdev-steps { display: flex; flex-direction: column; gap: 24px; }
+    .webdev-step {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all .3s ease;
+    }
+    .webdev-step:hover { border-color: rgba(124,58,237,0.4); transform: translateX(8px); }
+    .webdev-step-icon {
+      min-width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg,rgba(124,58,237,0.2),rgba(168,85,247,0.15));
+      color: var(--purple2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .webdev-step h4 { font-size: 16px; margin-bottom: 4px; }
+    .webdev-step p { color: var(--muted); font-size: 13px; }
+    .webdev-visual-card {
+      background: var(--bg3);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 20px; padding: 32px;
+      box-shadow: 0 0 60px rgba(124,58,237,0.08);
+    }
+    .webdev-visual-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px; padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-bar {
+      flex: 1; height: 28px; background: rgba(255,255,255,0.05);
+      border-radius: 6px; display: flex; align-items: center;
+      padding: 0 12px; font-size: 11px; color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .webdev-stat-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 16px;
+    }
+    .webdev-stat {
+      padding: 14px; border-radius: 10px;
+      background: rgba(124,58,237,0.06);
+      border: 1px solid rgba(124,58,237,0.12);
+      text-align: center;
+    }
+    .webdev-stat .val { font-size: 22px; font-weight: 800; color: var(--purple2); }
+    .webdev-stat .key { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .webdev-feature-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .webdev-feature {
+      display: flex; gap: 10px; align-items: center;
+      font-size: 13px; padding: 10px 14px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px; border: 1px solid var(--border);
+    }
+    .webdev-feature .check { color: var(--purple2); font-weight: 700; }
+    .webdev-perks {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-top: 32px;
+    }
+    .webdev-perk {
+      padding: 16px; border-radius: 12px;
+      background: rgba(124,58,237,0.05);
+      border: 1px solid rgba(124,58,237,0.1);
+      text-align: center;
+    }
+    .webdev-perk .icon { font-size: 22px; margin-bottom: 8px; }
+    .webdev-perk strong { display: block; font-size: 13px; color: var(--text); margin-bottom: 4px; }
+    .webdev-perk p { font-size: 12px; color: var(--muted); }
+
+    /* ─── SEO SECTION ──────────────────────────────────────── */
+    .seo-section { background: var(--bg2); position: relative; z-index: 1; }
+    .seo-grid {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 80px; align-items: center; margin-top: 60px;
+    }
+    .seo-steps { display: flex; flex-direction: column; gap: 20px; }
+    .seo-step {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px 20px; border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all .3s ease;
+    }
+    .seo-step:hover { border-color: rgba(245,158,11,0.4); transform: translateX(8px); }
+    .seo-step-icon {
+      min-width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg,rgba(245,158,11,0.2),rgba(245,158,11,0.1));
+      color: var(--yellow);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .seo-step h4 { font-size: 15px; margin-bottom: 3px; }
+    .seo-step p { color: var(--muted); font-size: 13px; }
+    .seo-visual-card {
+      background: var(--bg3);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 20px; padding: 28px;
+      box-shadow: 0 0 60px rgba(245,158,11,0.06);
+    }
+    .seo-card-title {
+      font-size: 13px; font-weight: 700; color: var(--yellow);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 20px; padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .seo-score-ring {
+      text-align: center; margin-bottom: 24px;
+      padding: 20px; background: rgba(245,158,11,0.04);
+      border-radius: 14px; border: 1px solid rgba(245,158,11,0.1);
+    }
+    .seo-score-ring .big-score {
+      font-size: 56px; font-weight: 900;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1;
+    }
+    .seo-score-ring .score-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .seo-metric-bar { margin-bottom: 14px; }
+    .seo-metric-bar .bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 12px; margin-bottom: 6px; font-weight: 500;
+    }
+    .seo-metric-bar .bar-label span { color: var(--muted); }
+    .seo-metric-bar .bar-label strong { color: var(--text); }
+    .bar-track {
+      height: 6px; background: rgba(255,255,255,0.06);
+      border-radius: 99px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(90deg, #f59e0b, #fbbf24);
+      animation: barGrow 1.5s ease forwards;
+      transform-origin: left;
+    }
+    @keyframes barGrow { from { width: 0 !important; } }
+    .seo-issues { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .seo-issue {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; padding: 10px 14px;
+      border-radius: 8px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .issue-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ─── QA SECTION ───────────────────────────────────────── */
+    .qa-section { background: var(--bg2); position: relative; z-index: 1; }
+    .qa-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; margin-top: 60px;
+    }
+    .qa-steps { display: flex; flex-direction: column; gap: 24px; }
+    .qa-step {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all .3s ease;
+    }
+    .qa-step:hover { border-color: rgba(16,185,129,0.4); transform: translateX(8px); }
+    .qa-step-num {
+      min-width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(16,185,129,0.15); color: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .qa-step h4 { font-size: 16px; margin-bottom: 4px; }
+    .qa-step p { color: var(--muted); font-size: 13px; }
+    .qa-visual { position: relative; }
+    .bug-report-card {
+      background: var(--bg3);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 20px; padding: 32px;
+      box-shadow: 0 0 60px rgba(16,185,129,0.08);
+    }
+    .bug-report-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px; padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .bug-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .bug-report-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px;
+    }
+    .bug-report-row:last-child { border: none; }
+    .bug-sev {
+      padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700;
+    }
+    .sev-critical { background: rgba(239,68,68,0.15); color: var(--red); }
+    .sev-high { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .sev-medium { background: rgba(124,58,237,0.15); color: var(--purple2); }
+    .sev-low { background: rgba(16,185,129,0.15); color: var(--green); }
+    .qa-perks {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 32px;
+    }
+    .qa-perk {
+      padding: 16px; border-radius: 12px;
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.12);
+      text-align: center;
+    }
+    .qa-perk .icon { font-size: 24px; margin-bottom: 8px; }
+    .qa-perk p { font-size: 13px; color: var(--muted); }
+    .qa-perk strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+
+    /* ─── TECH STACK ───────────────────────────────────────── */
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+      gap: 16px; margin-top: 60px;
+    }
+    .tech-card {
+      padding: 24px 16px; text-align: center;
+      border: 1px solid var(--border); border-radius: 14px;
+      background: var(--surface);
+      transition: all .3s ease;
+    }
+    .tech-card:hover {
+      border-color: rgba(124,58,237,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(124,58,237,0.1);
+    }
+    .tech-card .icon { font-size: 32px; margin-bottom: 10px; }
+    .tech-card .name { font-size: 13px; font-weight: 600; color: var(--muted); }
+
+    /* ─── PROCESS ──────────────────────────────────────────── */
+    .process-section { background: var(--bg2); position: relative; z-index: 1; }
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 32px; margin-top: 60px; position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute; top: 40px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      opacity: 0.3;
+    }
+    .process-card { text-align: center; }
+    .process-num {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--grad); display: flex; align-items: center;
+      justify-content: center; font-size: 28px; font-weight: 900;
+      margin: 0 auto 20px; position: relative; z-index: 1;
+      box-shadow: 0 0 30px rgba(124,58,237,0.3);
+    }
+    .process-timeline { font-size: 11px; color: var(--cyan2); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+    .process-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .process-card p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+    /* ─── TESTIMONIALS ─────────────────────────────────────── */
+    .testimonials-section { background: var(--bg2); position: relative; z-index: 1; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 60px;
+    }
+    .testi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      transition: all .4s ease;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .testi-card::before {
+      content: '"'; position: absolute;
+      top: -10px; right: 24px;
+      font-size: 120px; font-family: Georgia, serif;
+      color: var(--purple); opacity: 0.08;
+      line-height: 1; pointer-events: none;
+    }
+    .testi-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,58,237,0.35);
+      box-shadow: 0 20px 50px rgba(124,58,237,0.12);
+    }
+    .testi-card.featured {
+      background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.04));
+      border-color: rgba(124,58,237,0.3);
+      grid-column: span 1;
+    }
+    .testi-stars { color: #f59e0b; font-size: 15px; letter-spacing: 2px; }
+    .testi-text {
+      font-size: 15px; line-height: 1.75;
+      color: var(--muted); flex: 1;
+      font-style: italic;
+    }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px; color: #fff;
+      flex-shrink: 0; letter-spacing: 1px;
+    }
+    .testi-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .testi-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .testi-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 99px; font-size: 11px;
+      font-weight: 600; margin-top: 6px;
+      background: rgba(124,58,237,0.12); color: var(--purple2);
+      border: 1px solid rgba(124,58,237,0.2);
+    }
+
+    /* ─── PORTFOLIO ────────────────────────────────────────── */
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px,1fr));
+      gap: 28px; margin-top: 60px;
+    }
+    .portfolio-card { overflow: hidden; }
+    .portfolio-thumb {
+      height: 200px; border-radius: 12px; margin-bottom: 20px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+    }
+    .portfolio-cat {
+      position: absolute; top: 12px; right: 12px;
+    }
+    .portfolio-card h3 { font-size: 20px; margin-bottom: 8px; }
+    .portfolio-card p { color: var(--muted); font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .metric-pill {
+      text-align: center; padding: 10px 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border); border-radius: 10px;
+    }
+    .metric-pill .val { font-size: 18px; font-weight: 800; color: var(--cyan2); }
+    .metric-pill .key { font-size: 10px; color: var(--muted); }
+
+    /* ─── FAQ ──────────────────────────────────────────────── */
+    .faq-section { background: var(--bg2); position: relative; z-index: 1; }
+    .faq-list { max-width: 800px; margin: 60px auto 0; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; transition: all .3s;
+    }
+    .faq-item.open { border-color: rgba(124,58,237,0.4); }
+    .faq-q {
+      width: 100%; padding: 22px 28px;
+      background: var(--surface); border: none;
+      color: var(--text); font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 600; text-align: left;
+      cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; transition: background .3s;
+    }
+    .faq-item.open .faq-q { background: rgba(124,58,237,0.08); }
+    .faq-chevron { font-size: 20px; transition: transform .3s; flex-shrink: 0; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s;
+      color: var(--muted); font-size: 15px; line-height: 1.7;
+      padding: 0 28px;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding: 20px 28px 24px; }
+
+    /* ─── CONTACT FORM ─────────────────────────────────────── */
+    .contact-section { position: relative; z-index: 1; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 80px; align-items: start; margin-top: 60px;
+    }
+    .contact-info h3 { font-size: 28px; margin-bottom: 16px; }
+    .contact-info p { color: var(--muted); margin-bottom: 36px; font-size: 16px; line-height: 1.7; }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link {
+      display: flex; gap: 14px; align-items: center;
+      padding: 16px 20px; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--surface);
+      transition: all .3s; font-size: 14px;
+    }
+    .contact-link:hover { border-color: rgba(124,58,237,0.4); transform: translateX(4px); }
+    .contact-link-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--grad); display: flex; align-items: center;
+      justify-content: center; font-size: 18px; flex-shrink: 0;
+    }
+    .contact-link strong { display: block; font-size: 13px; color: var(--muted); font-weight: 500; }
+    .contact-link span { color: var(--text); font-weight: 600; }
+    .audit-box {
+      margin-top: 28px; padding: 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05));
+      border: 1px solid rgba(124,58,237,0.2);
+    }
+    .audit-box p { font-size: 14px; color: var(--muted); margin: 0; }
+    .audit-box strong { color: var(--text); }
+
+    /* Form */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px;
+      backdrop-filter: blur(10px);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--muted); margin-bottom: 8px; letter-spacing: .3px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    textarea,
+    select {
+      width: 100%; padding: 14px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text);
+      font-size: 15px; font-family: 'Inter', sans-serif;
+      transition: all .3s; outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--purple2);
+      background: rgba(124,58,237,0.05);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+    }
+    input::placeholder, textarea::placeholder { color: rgba(148,163,184,0.5); }
+    textarea { resize: vertical; min-height: 110px; }
+    select option { background: var(--bg); color: var(--text); }
+
+    /* Checkboxes */
+    .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+    .checkbox-label {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px; border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      cursor: pointer; transition: all .3s;
+      font-size: 14px; color: var(--text); font-weight: 500;
+    }
+    .checkbox-label:hover { border-color: rgba(124,58,237,0.4); background: rgba(124,58,237,0.05); }
+    .checkbox-label input[type="checkbox"] {
+      display: none;
+    }
+    .custom-check {
+      width: 20px; height: 20px; border-radius: 6px;
+      border: 2px solid var(--border); background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; flex-shrink: 0;
+      font-size: 12px;
+    }
+    .checkbox-label input:checked ~ .custom-check {
+      background: var(--grad); border-color: transparent;
+      color: white;
+    }
+    .checkbox-label:has(input:checked) {
+      border-color: rgba(124,58,237,0.4);
+      background: rgba(124,58,237,0.06);
+    }
+    .check-icon { font-size: 20px; margin-right: 4px; }
+
+    /* Conditional field */
+    .conditional-field {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s ease, opacity .3s, margin .3s;
+      opacity: 0; margin-top: 0;
+    }
+    .conditional-field.visible {
+      max-height: 200px; opacity: 1; margin-top: 16px;
+    }
+
+    .form-submit {
+      width: 100%; padding: 16px;
+      border-radius: 12px; font-size: 16px;
+      margin-top: 8px;
+    }
+    .form-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+    /* Success State */
+    .form-success {
+      display: none; text-align: center; padding: 40px;
+    }
+    .form-success .success-icon { font-size: 64px; margin-bottom: 16px; }
+    .form-success h3 { font-size: 24px; margin-bottom: 8px; }
+    .form-success p { color: var(--muted); }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center; position: relative; z-index: 1;
+    }
+    footer p { color: var(--muted); font-size: 14px; }
+
+    /* ─── MOBILE NAV ───────────────────────────────────────── */
+    .mobile-menu {
+      display: none; position: fixed;
+      inset: 0; background: rgba(6,6,15,0.97);
+      z-index: 999; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 36px; backdrop-filter: blur(20px);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 24px; font-weight: 700; color: var(--text); }
+    .mobile-menu a:hover { color: var(--purple2); }
+    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 28px; cursor: pointer; color: var(--muted); }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE — Mobile First, All Breakpoints
+       1200px → Tablet Landscape → 768px → 480px → 375px
+    ════════════════════════════════════════════════════════════ */
+
+    /* ── 1200px: Large tablets / small laptops ── */
+    @media (max-width: 1200px) {
+      .container { padding: 0 32px; }
+      .hero-title { font-size: clamp(34px, 4.5vw, 56px); }
+      .webdev-grid { gap: 50px; }
+      .seo-grid { gap: 50px; }
+      .qa-grid { gap: 50px; }
+    }
+
+    /* ── 1024px: Tablet landscape ── */
+    @media (max-width: 1024px) {
+      /* Navbar */
+      .nav-links { gap: 22px; }
+      .nav-links a { font-size: 13px; }
+
+      /* Hero */
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-form-side { position: static; }
+      .hero-desc { margin: 0 0 36px; }
+      .hero-visual-inline { margin-top: 24px; }
+
+      /* Testimonials */
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      /* Services */
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Web Dev Section */
+      .webdev-grid { grid-template-columns: 1fr; gap: 48px; }
+      .webdev-stat-row { grid-template-columns: repeat(4, 1fr); }
+      .webdev-perks { grid-template-columns: repeat(4, 1fr); }
+
+      /* SEO Section */
+      .seo-grid { grid-template-columns: 1fr; gap: 48px; }
+      .seo-grid > div:first-child { order: 2; }
+      .seo-grid > div:last-child  { order: 1; }
+
+      /* QA Section */
+      .qa-grid { grid-template-columns: 1fr; gap: 48px; }
+      .qa-perks { grid-template-columns: repeat(4, 1fr); }
+
+      /* Process */
+      .process-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+      .process-grid::before { display: none; }
+
+      /* Portfolio */
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-info { text-align: center; }
+      .contact-links { max-width: 500px; margin: 0 auto; }
+      .audit-box { max-width: 500px; margin: 24px auto 0; }
+    }
+
+    /* ── 768px: Tablet portrait / large phones ── */
+    @media (max-width: 768px) {
+      /* Navbar → hamburger */
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #themeBtnMobile { display: flex !important; }
+
+      /* Global */
+      section { padding: 72px 0; }
+      .container { padding: 0 20px; }
+      .section-title { font-size: clamp(26px, 6vw, 38px); }
+      .section-desc { font-size: 16px; }
+
+      /* Hero */
+      .hero { padding: 110px 0 60px; }
+      .hero-title { font-size: clamp(30px, 7.5vw, 46px); }
+      .hero-typed-wrap { font-size: 18px; height: 34px; }
+      .hero-btns { gap: 12px; }
+      .hero-trust { gap: 16px; }
+      .trust-num { font-size: 24px; }
+      .hero-form-card { padding: 24px 20px; }
+
+      /* Marquee */
+      .marquee-section { padding: 24px 0; }
+
+      /* Testimonials */
+      .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; gap: 16px; }
+      .service-card { padding: 24px; }
+
+      /* Web Dev */
+      .webdev-stat-row { grid-template-columns: repeat(2, 1fr); }
+      .webdev-perks { grid-template-columns: repeat(2, 1fr); }
+      .webdev-visual-card { padding: 22px; }
+      .webdev-feature-list { gap: 8px; }
+      .webdev-step { padding: 16px; }
+
+      /* SEO */
+      .seo-visual-card { padding: 22px; }
+      .seo-score-ring .big-score { font-size: 44px; }
+      .seo-step { padding: 14px 16px; }
+
+      /* QA */
+      .qa-perks { grid-template-columns: repeat(2, 1fr); }
+      .bug-report-card { padding: 22px; }
+      .qa-step { padding: 16px; }
+
+      /* Tech Stack */
+      .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .tech-card { padding: 18px 12px; }
+      .tech-card .icon { font-size: 26px; }
+      .tech-card .name { font-size: 12px; }
+
+      /* Process */
+      .process-grid { grid-template-columns: 1fr; gap: 20px; }
+      .process-card { display: flex; gap: 20px; text-align: left; align-items: flex-start; }
+      .process-num { min-width: 60px; height: 60px; font-size: 22px; margin: 0; }
+      .process-card h3 { font-size: 16px; }
+
+      /* Portfolio */
+      .portfolio-grid { grid-template-columns: 1fr; gap: 20px; }
+      .portfolio-thumb { height: 160px; font-size: 36px; }
+      .metrics-grid { grid-template-columns: repeat(3, 1fr); }
+
+      /* FAQ */
+      .faq-q { font-size: 14px; padding: 18px 20px; }
+      .faq-item.open .faq-a { padding: 16px 20px 20px; }
+
+      /* Contact Form */
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-card { padding: 28px 20px; }
+      .checkbox-label { padding: 12px 14px; font-size: 13px; }
+      .contact-info h3 { font-size: 22px; }
+    }
+
+    /* ── 480px: Standard phones ── */
+    @media (max-width: 480px) {
+      /* Global */
+      section { padding: 56px 0; }
+      .container { padding: 0 16px; }
+      .section-title { font-size: clamp(24px, 7vw, 32px); }
+      .badge { font-size: 11px; padding: 5px 12px; }
+
+      /* Hero */
+      .hero { padding: 100px 0 50px; }
+      .hero-title { font-size: clamp(26px, 8vw, 36px); }
+      .hero-typed-wrap { font-size: 16px; height: 30px; }
+      .hero-trust { gap: 12px; }
+      .trust-num { font-size: 22px; }
+      .trust-label { font-size: 11px; }
+      .hero-form-card { padding: 20px 16px; border-radius: 18px; }
+
+      /* Web Dev */
+      .webdev-stat-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .webdev-stat .val { font-size: 18px; }
+      .webdev-perks { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .webdev-perk { padding: 12px; }
+      .webdev-step-icon { min-width: 38px; height: 38px; font-size: 17px; }
+
+      /* SEO */
+      .seo-score-ring .big-score { font-size: 40px; }
+      .seo-step-icon { min-width: 38px; height: 38px; font-size: 17px; }
+
+      /* QA */
+      .qa-perks { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .qa-perk { padding: 12px; }
+      .qa-step-num { min-width: 32px; height: 32px; font-size: 13px; }
+
+      /* Bug Report Card */
+      .bug-report-row { font-size: 12px; padding: 8px 0; }
+      .bug-sev { font-size: 10px; padding: 2px 8px; }
+
+      /* Tech Stack */
+      .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .tech-card { padding: 14px 8px; }
+      .tech-card .icon { font-size: 22px; margin-bottom: 8px; }
+      .tech-card .name { font-size: 11px; }
+
+      /* Process */
+      .process-num { min-width: 50px; height: 50px; font-size: 18px; }
+      .process-card h3 { font-size: 15px; }
+      .process-card p { font-size: 13px; }
+
+      /* Portfolio */
+      .portfolio-thumb { height: 130px; font-size: 30px; }
+      .metric-pill .val { font-size: 15px; }
+
+      /* FAQ */
+      .faq-q { font-size: 13px; padding: 16px 16px; }
+      .faq-item.open .faq-a { padding: 14px 16px 18px; font-size: 13px; }
+
+      /* Contact */
+      .form-card { padding: 22px 16px; border-radius: 18px; }
+      .contact-link { padding: 12px 14px; }
+      .contact-link-icon { width: 36px; height: 36px; font-size: 16px; }
+      .btn { font-size: 14px; padding: 12px 22px; }
+      .form-submit { font-size: 14px; padding: 14px; }
+
+      /* Footer */
+      footer { padding: 28px 0; }
+      footer p { font-size: 12px; }
+    }
+
+    /* ── 375px: Small phones (iPhone SE etc.) ── */
+    @media (max-width: 375px) {
+      .hero-title { font-size: 24px; }
+      .hero-trust { gap: 8px; }
+      .trust-item { min-width: 60px; }
+      .services-grid { gap: 12px; }
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .webdev-stat-row { grid-template-columns: repeat(2, 1fr); }
+      .metrics-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .metric-pill .val { font-size: 13px; }
+      .metric-pill .key { font-size: 9px; }
+      .process-card { flex-direction: column; text-align: center; }
+      .process-num { margin: 0 auto; }
+    }
+
+    /* ─── STICKY FLOATING BUTTONS ─────────────────────────── */
+    .sticky-btns {
+      position: fixed;
+      right: 20px;
+      bottom: 40px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .sticky-btn {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-size: 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all .3s ease;
+      position: relative;
+      border: 2px solid rgba(255,255,255,0.12);
+    }
+    .sticky-btn:hover {
+      transform: scale(1.15) translateX(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .sticky-btn:hover .sticky-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .sticky-btn.whatsapp { background: #25d366; }
+    .sticky-btn.call     { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+    .sticky-btn.mail     { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .sticky-tooltip {
+      position: absolute;
+      right: 62px;
+      background: rgba(10,10,20,0.92);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateX(8px);
+      transition: all .25s ease;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+    }
+    .sticky-tooltip::after {
+      content: '';
+      position: absolute;
+      right: -6px; top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-left-color: rgba(10,10,20,0.92);
+      border-right: none;
+    }
+    .sticky-divider {
+      width: 2px; height: 24px;
+      background: linear-gradient(to bottom, var(--purple), transparent);
+      border-radius: 2px;
+    }
+    /* Call button — desktop pe hide, mobile pe show */
+    .sticky-btn-call-wrap { display: none; }
+    @media (max-width: 768px) {
+      .sticky-btn-call-wrap { display: contents; }
+    }
+
+    @media (max-width: 480px) {
+      .sticky-btns { right: 12px; bottom: 28px; gap: 10px; }
+      .sticky-btn  { width: 46px; height: 46px; font-size: 19px; }
+      .sticky-tooltip { display: none; }
+    }
+
+    /* ─── SCROLL PROGRESS ──────────────────────────────────── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: var(--grad); z-index: 9999;
+      transition: width .1s linear;
+    }
+
+    /* ─── ANIMATIONS ───────────────────────────────────────── */
+    @keyframes pulse-glow {
+      0%,100% { box-shadow: 0 0 20px rgba(124,58,237,0.3); }
+      50% { box-shadow: 0 0 40px rgba(124,58,237,0.6); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- Background -->
+<canvas id="particles-canvas"></canvas>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" onclick="toggleMenu()">✕</span>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#webdev" onclick="toggleMenu()">Web Development</a>
+  <a href="#seo" onclick="toggleMenu()">Technical SEO</a>
+  <a href="#qa" onclick="toggleMenu()">QA Testing</a>
+  <a href="#work" onclick="toggleMenu()">Portfolio</a>
+  <a href="#process" onclick="toggleMenu()">Process</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="sachin-raut-logo.svg" alt="Sachin Raut Logo" style="height:44px;width:auto;display:block;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#webdev">Web Dev</a></li>
+        <li><a href="#seo">SEO</a></li>
+        <li><a href="#qa">QA Testing</a></li>
+        <li><a href="#work">Portfolio</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle theme" aria-label="Toggle dark/light theme">🌙</button>
+        <a href="#contact" class="btn btn-primary" style="padding: 10px 22px; font-size: 13px;">Get Free Audit ✦</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtnMobile" title="Toggle theme" aria-label="Toggle theme" style="display:none;">🌙</button>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- LEFT: Content + floating card -->
+      <div class="hero-content">
+        <div class="hero-label" data-aos="fade-up">
+          <span class="badge">⚡ Available for Projects · Mumbai, India</span>
+        </div>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+          Building Websites<br />That <span class="gradient-text">Rank & Convert</span>
+        </h1>
+        <div class="hero-typed-wrap" data-aos="fade-up" data-aos-delay="150">
+          <span id="typed-text"></span>
+        </div>
+        <p class="hero-desc" data-aos="fade-up" data-aos-delay="200">
+          Full-Stack Developer & QA Specialist crafting high-performance, SEO-optimized websites and delivering detailed bug reports. Trusted by 15+ businesses across India.
+        </p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="250">
+          <a href="#work" class="btn btn-outline">View Portfolio →</a>
+        </div>
+        <div class="hero-trust" data-aos="fade-up" data-aos-delay="300">
+          <div class="trust-item">
+            <span class="trust-num" data-count="15">0</span>
+            <span class="trust-label">Businesses Served</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num" data-count="98">0</span>
+            <span class="trust-label">Lighthouse Score</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num" data-count="4">0</span>
+            <span class="trust-label">Weeks to Launch</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num" data-count="100">0</span>
+            <span class="trust-label">% Code Ownership</span>
+          </div>
+        </div>
+
+        <!-- Floating project card — now below trust on left -->
+        <div class="hero-visual-inline" data-aos="fade-up" data-aos-delay="350">
+          <div class="hero-card-float" style="animation:none;transform:none;max-width:100%;width:100%;">
+            <div class="hero-card-icon">🚀</div>
+            <h3>Latest Project</h3>
+            <p>Garage Management SaaS — Multi-tenant platform with real-time analytics</p>
+            <div class="metric-row">
+              <div class="metric-box"><div class="num">-80%</div><div class="lbl">Admin Time</div></div>
+              <div class="metric-box"><div class="num">+30%</div><div class="lbl">Retention</div></div>
+              <div class="metric-box"><div class="num">100%</div><div class="lbl">Digitized</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Lead capture form -->
+      <div class="hero-form-side" data-aos="fade-left" data-aos-delay="150">
+        <div class="hero-form-card">
+          <div class="hero-form-header">
+            <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:var(--cyan2);margin-bottom:8px;">GET STARTED — FREE</div>
+            <h3 style="font-size:22px;font-weight:800;margin-bottom:6px;">Let's Build Something <span class="gradient-text">Amazing</span></h3>
+            <p style="font-size:13px;color:var(--muted);">Response within 24 hrs · Free audit included · No credit card</p>
+          </div>
+
+          <form id="heroForm" onsubmit="handleHeroSubmit(event)" style="margin-top:20px;">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hname">Full Name *</label>
+                <input type="text" id="hname" placeholder="Rahul Sharma" required />
+              </div>
+              <div class="form-group">
+                <label for="hphone">Phone *</label>
+                <input type="tel" id="hphone" placeholder="+91 98765 43210" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="hemail">Email Address *</label>
+              <input type="email" id="hemail" placeholder="rahul@company.com" required />
+            </div>
+
+            <!-- Service checkboxes -->
+            <div class="form-group">
+              <label>What do you need? *</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="hservice" value="new-website" id="hchk-new" onchange="handleHeroCheckbox()" />
+                  <span class="custom-check">✓</span>
+                  <span class="check-icon">🚀</span>
+                  <div>
+                    <strong>New Website</strong>
+                    <div style="font-size:11px;color:var(--muted);font-weight:400;">WordPress, Next.js or CRM/SaaS</div>
+                  </div>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="hservice" value="seo-report" id="hchk-seo" onchange="handleHeroCheckbox()" />
+                  <span class="custom-check">✓</span>
+                  <span class="check-icon">📈</span>
+                  <div>
+                    <strong>SEO Audit Report</strong>
+                    <div style="font-size:11px;color:var(--muted);font-weight:400;">Core Web Vitals & rankings</div>
+                  </div>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="hservice" value="qa-testing" id="hchk-qa" onchange="handleHeroCheckbox()" />
+                  <span class="custom-check">✓</span>
+                  <span class="check-icon">🔬</span>
+                  <div>
+                    <strong>QA Testing & Bug Report</strong>
+                    <div style="font-size:11px;color:var(--muted);font-weight:400;">Manual testing document</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Conditional URL field -->
+            <div class="conditional-field" id="heroWebsiteField">
+              <div class="form-group" style="margin:0;">
+                <label for="hwebsite">Your Website URL</label>
+                <input type="url" id="hwebsite" placeholder="https://yourwebsite.com" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit" style="margin-top:16px;">
+              Send & Get Free Audit ✦
+            </button>
+            <p class="form-note">🔒 No spam, ever. Your details are safe.</p>
+          </form>
+
+          <div class="form-success" id="heroFormSuccess">
+            <div class="success-icon">🎉</div>
+            <h3>Message Sent!</h3>
+            <p>I'll get back to you within 24 hours with your free audit and next steps.</p>
+          </div>
+
+          <!-- Trust pills below form -->
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+            <span style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;">✅ Free Audit Worth ₹5,000</span>
+            <span style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;">✅ 100% Code Ownership</span>
+            <span style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;">✅ No Lock-in</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot"></span> Custom WordPress</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Next.js & React</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Technical SEO</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Manual QA Testing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Bug Reports</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Core Web Vitals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Custom CRM / SaaS</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Headless CMS</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Cloudflare CDN</div>
+    <!-- Duplicate for infinite scroll -->
+    <div class="marquee-item"><span class="marquee-dot"></span> Custom WordPress</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Next.js & React</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Technical SEO</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Manual QA Testing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Bug Reports</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Core Web Vitals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Custom CRM / SaaS</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Headless CMS</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Cloudflare CDN</div>
+  </div>
+</div>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="services">
+  <div class="container">
+    <div data-aos="fade-up">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title">Services Built for <span class="gradient-text">Growth</span></h2>
+      <p class="section-desc">Every service is laser-focused on one goal — helping your business get more leads, rank higher, and run smoother.</p>
+    </div>
+    <div class="services-grid">
+      <div class="card service-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="service-icon" style="background: linear-gradient(135deg,#7c3aed22,#a855f733);">🎨</div>
+        <h3>Custom WordPress Development</h3>
+        <p>Expert WordPress development with custom themes, secure plugins, and lightning-fast hosting on OpenLiteSpeed VPS — built to perform.</p>
+        <div class="service-tags">
+          <span class="tag">Custom Themes</span>
+          <span class="tag">WooCommerce</span>
+          <span class="tag">VPS Hosting</span>
+          <span class="tag">Security</span>
+        </div>
+      </div>
+      <div class="card service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-icon" style="background: linear-gradient(135deg,#06b6d422,#22d3ee33);">⚡</div>
+        <h3>Headless CMS & Next.js</h3>
+        <p>Future-proof web solutions using Strapi Headless CMS and Next.js — perfect for scalable, SEO-friendly modern web applications.</p>
+        <div class="service-tags">
+          <span class="tag cyan">Next.js / React</span>
+          <span class="tag cyan">Strapi CMS</span>
+          <span class="tag cyan">API Dev</span>
+          <span class="tag cyan">PWA</span>
+        </div>
+      </div>
+      <div class="card service-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-icon" style="background: linear-gradient(135deg,#f59e0b22,#f59e0b33);">📈</div>
+        <h3>Technical SEO & Speed Fixes</h3>
+        <p>Guaranteed Core Web Vitals optimization — fixing INP, CLS, and LCP issues to boost your Google rankings and organic traffic.</p>
+        <div class="service-tags">
+          <span class="tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;border-color:rgba(245,158,11,0.2);">Core Web Vitals</span>
+          <span class="tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;border-color:rgba(245,158,11,0.2);">Schema Markup</span>
+          <span class="tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;border-color:rgba(245,158,11,0.2);">Google Ads</span>
+        </div>
+      </div>
+      <div class="card service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-icon" style="background: linear-gradient(135deg,#10b98122,#10b98133);">🛠️</div>
+        <h3>Custom CRM & SaaS Software</h3>
+        <p>Tailor-made software solutions to automate business processes. Secure SaaS platforms, CRMs, and internal tools built for scale.</p>
+        <div class="service-tags">
+          <span class="tag green">Custom CRM</span>
+          <span class="tag green">SaaS Build</span>
+          <span class="tag green">Automation</span>
+          <span class="tag green">Database Design</span>
+        </div>
+      </div>
+      <div class="card service-card service-highlight" data-aos="fade-up" data-aos-delay="250" style="grid-column: span 1;">
+        <div class="service-icon" style="background: linear-gradient(135deg,#7c3aed33,#06b6d422);">🔬</div>
+        <h3>Manual QA Testing & Bug Reports</h3>
+        <p>Professional manual testing service — I test your website or app thoroughly, document every bug with severity levels, and deliver a complete, professional bug report document.</p>
+        <div class="service-tags">
+          <span class="tag">Functional Testing</span>
+          <span class="tag cyan">UI/UX Testing</span>
+          <span class="tag green">Bug Document</span>
+          <span class="tag">Cross-Browser</span>
+          <span class="tag cyan">Regression</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WEBSITE DEVELOPMENT DEEP DIVE ═══════════ -->
+<section class="webdev-section" id="webdev">
+  <div class="container">
+    <div data-aos="fade-up" style="max-width:620px;">
+      <div class="section-label">Website Development</div>
+      <h2 class="section-title">Websites Built to <span class="gradient-text">Perform & Convert</span></h2>
+      <p class="section-desc">From custom WordPress to full-stack Next.js — every website is engineered for speed, SEO, and real business results. No templates, no shortcuts.</p>
+    </div>
+    <div class="webdev-grid">
+      <!-- Steps -->
+      <div>
+        <div class="webdev-steps">
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="0">
+            <div class="webdev-step-icon">🎯</div>
+            <div>
+              <h4>Discovery & Requirements</h4>
+              <p>Deep-dive into your business goals, target audience, competitors, and technical requirements. Every build starts with a clear blueprint.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="80">
+            <div class="webdev-step-icon">🎨</div>
+            <div>
+              <h4>UI/UX Design & Wireframing</h4>
+              <p>Custom wireframes and high-fidelity mockups tailored to your brand — reviewed and approved by you before a single line of code is written.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="160">
+            <div class="webdev-step-icon">⚙️</div>
+            <div>
+              <h4>Development with Live Staging</h4>
+              <p>Clean, scalable code with a live staging URL from day one. Regular progress updates via email so you're never in the dark.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="240">
+            <div class="webdev-step-icon">🔐</div>
+            <div>
+              <h4>SEO, Security & Performance Baking</h4>
+              <p>Technical SEO, schema markup, SSL, security hardening, and Core Web Vitals optimization built into every project — not added later.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="320">
+            <div class="webdev-step-icon">🚀</div>
+            <div>
+              <h4>Launch + CMS Handover</h4>
+              <p>Full deployment on your chosen platform, Google tools setup, CMS training, and post-launch support. You own 100% of the code.</p>
+            </div>
+          </div>
+        </div>
+        <div class="webdev-perks" data-aos="fade-up" data-aos-delay="200">
+          <div class="webdev-perk">
+            <div class="icon">⚡</div>
+            <strong>Lightning Fast</strong>
+            <p>95+ PageSpeed guaranteed</p>
+          </div>
+          <div class="webdev-perk">
+            <div class="icon">📱</div>
+            <strong>Mobile-First</strong>
+            <p>Pixel-perfect on all devices</p>
+          </div>
+          <div class="webdev-perk">
+            <div class="icon">🔒</div>
+            <strong>100% Ownership</strong>
+            <p>Code, design & all assets</p>
+          </div>
+          <div class="webdev-perk">
+            <div class="icon">🛡️</div>
+            <strong>SSL + Security</strong>
+            <p>Hardened & GDPR ready</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Card -->
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div class="webdev-visual-card">
+          <div class="webdev-visual-header">
+            <div class="browser-dot" style="background:#ef4444;"></div>
+            <div class="browser-dot" style="background:#f59e0b;"></div>
+            <div class="browser-dot" style="background:#10b981;"></div>
+            <div class="browser-bar">🔒 yourwebsite.com</div>
+          </div>
+          <div style="font-size:12px;color:var(--purple2);font-weight:700;letter-spacing:2px;margin-bottom:16px;">DELIVERY SNAPSHOT</div>
+          <div class="webdev-stat-row">
+            <div class="webdev-stat"><div class="val">95+</div><div class="key">PageSpeed Score</div></div>
+            <div class="webdev-stat"><div class="val">4 wks</div><div class="key">Avg. Launch Time</div></div>
+            <div class="webdev-stat"><div class="val">100%</div><div class="key">Code Ownership</div></div>
+            <div class="webdev-stat"><div class="val">99.9%</div><div class="key">Uptime SLA</div></div>
+          </div>
+          <div class="webdev-feature-list">
+            <div class="webdev-feature"><span class="check">✦</span> Custom theme — no page-builder bloat</div>
+            <div class="webdev-feature"><span class="check">✦</span> Headless CMS — edit content without code</div>
+            <div class="webdev-feature"><span class="check">✦</span> WooCommerce / API integrations</div>
+            <div class="webdev-feature"><span class="check">✦</span> Cloudflare CDN + OpenLiteSpeed VPS</div>
+            <div class="webdev-feature"><span class="check">✦</span> Schema markup & XML sitemap baked in</div>
+            <div class="webdev-feature"><span class="check">✦</span> Analytics + Search Console configured</div>
+            <div class="webdev-feature"><span class="check">✦</span> 1–6 months post-launch support included</div>
+          </div>
+          <div style="margin-top:20px;padding:14px;border-radius:10px;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(6,182,212,0.05));border:1px solid rgba(124,58,237,0.2);font-size:13px;color:var(--muted);">
+            <strong style="color:var(--text);">🎁 Free with every website:</strong> Lighthouse audit, Core Web Vitals report, SEO baseline, and a free performance check at 30 days post-launch.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TECHNICAL SEO DEEP DIVE ═══════════ -->
+<section class="seo-section" id="seo">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;max-width:620px;margin:0 auto;">
+      <div class="section-label" style="color:var(--yellow);">Technical SEO</div>
+      <h2 class="section-title">Rank Higher. Get Found. <span style="background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Drive Traffic.</span></h2>
+      <p class="section-desc" style="margin:0 auto;">Technical SEO isn't just about keywords — it's about making Google fall in love with your website. I fix what's holding your rankings back.</p>
+    </div>
+    <div class="seo-grid">
+      <!-- Visual Card -->
+      <div data-aos="fade-right" data-aos-delay="100">
+        <div class="seo-visual-card">
+          <div class="seo-card-title">📊 SEO Audit Report — Sample</div>
+          <div class="seo-score-ring">
+            <div class="big-score">87</div>
+            <div class="score-label">Overall SEO Health Score (before fixes)</div>
+          </div>
+          <div class="seo-metric-bar">
+            <div class="bar-label"><strong>Core Web Vitals (LCP)</strong><span>1.8s → 0.9s</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:92%;"></div></div>
+          </div>
+          <div class="seo-metric-bar">
+            <div class="bar-label"><strong>Cumulative Layout Shift</strong><span>0.12 → 0.01</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:98%;"></div></div>
+          </div>
+          <div class="seo-metric-bar">
+            <div class="bar-label"><strong>Interaction to Next Paint</strong><span>180ms → 60ms</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:85%;"></div></div>
+          </div>
+          <div class="seo-metric-bar">
+            <div class="bar-label"><strong>Mobile Usability</strong><span>72 → 100</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div>
+          </div>
+          <div class="seo-issues">
+            <div class="seo-issue"><div class="issue-dot" style="background:#ef4444;"></div> Missing meta descriptions on 8 pages</div>
+            <div class="seo-issue"><div class="issue-dot" style="background:#f59e0b;"></div> No schema markup / structured data</div>
+            <div class="seo-issue"><div class="issue-dot" style="background:#f59e0b;"></div> Images not optimized — avg 2.4MB each</div>
+            <div class="seo-issue"><div class="issue-dot" style="background:#10b981;"></div> Sitemap present but not submitted ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div>
+        <div class="seo-steps">
+          <div class="seo-step" data-aos="fade-left" data-aos-delay="0">
+            <div class="seo-step-icon">🔍</div>
+            <div>
+              <h4>Full Technical SEO Audit</h4>
+              <p>In-depth analysis of your site's current SEO health — crawlability, indexability, site structure, broken links, duplicate content, and more.</p>
+            </div>
+          </div>
+          <div class="seo-step" data-aos="fade-left" data-aos-delay="80">
+            <div class="seo-step-icon">⚡</div>
+            <div>
+              <h4>Core Web Vitals Optimization</h4>
+              <p>Fix LCP, CLS, and INP scores that directly impact Google rankings. Image optimization, lazy loading, script deferral, and layout stability fixes.</p>
+            </div>
+          </div>
+          <div class="seo-step" data-aos="fade-left" data-aos-delay="160">
+            <div class="seo-step-icon">🏷️</div>
+            <div>
+              <h4>Schema Markup & Structured Data</h4>
+              <p>Implement JSON-LD schema (FAQ, Product, LocalBusiness, Article) to earn rich snippets and stand out in Google search results.</p>
+            </div>
+          </div>
+          <div class="seo-step" data-aos="fade-left" data-aos-delay="240">
+            <div class="seo-step-icon">🗺️</div>
+            <div>
+              <h4>Sitemap, Robots & Indexing Setup</h4>
+              <p>XML sitemap generation, robots.txt optimization, canonical tags, and Google Search Console + Bing Webmaster setup and submission.</p>
+            </div>
+          </div>
+          <div class="seo-step" data-aos="fade-left" data-aos-delay="320">
+            <div class="seo-step-icon">📈</div>
+            <div>
+              <h4>Keyword Strategy & On-Page SEO</h4>
+              <p>Keyword research, title/meta optimization, heading structure, internal linking, and Open Graph tags for social sharing visibility.</p>
+            </div>
+          </div>
+          <div class="seo-step" data-aos="fade-left" data-aos-delay="400">
+            <div class="seo-step-icon">📄</div>
+            <div>
+              <h4>Detailed SEO Report Delivery</h4>
+              <p>Receive a clear, actionable SEO report with issues ranked by priority, before/after screenshots, and a roadmap for continued growth.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;" data-aos="fade-up" data-aos-delay="300">
+          <div style="padding:14px;border-radius:10px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--yellow);">+180%</div>
+            <div style="font-size:11px;color:var(--muted);">Avg Organic Traffic</div>
+          </div>
+          <div style="padding:14px;border-radius:10px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--yellow);">50+</div>
+            <div style="font-size:11px;color:var(--muted);">Keywords Ranked</div>
+          </div>
+          <div style="padding:14px;border-radius:10px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.12);text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--yellow);">100</div>
+            <div style="font-size:11px;color:var(--muted);">Core Web Vitals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QA TESTING DEEP DIVE ═══════════ -->
+<section class="qa-section" id="qa">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
+      <div class="section-label">QA & Testing</div>
+      <h2 class="section-title">Manual Testing That <span class="gradient-text">Catches Everything</span></h2>
+      <p class="section-desc" style="margin:0 auto;">I test your website or application end-to-end and deliver a structured, professional bug report document — so your team knows exactly what to fix.</p>
+    </div>
+    <div class="qa-grid">
+      <div>
+        <div class="qa-steps">
+          <div class="qa-step" data-aos="fade-right" data-aos-delay="50">
+            <div class="qa-step-num">01</div>
+            <div>
+              <h4>Scope & Test Planning</h4>
+              <p>Define test scope, user flows, browsers, and devices. Create a structured test plan before testing begins.</p>
+            </div>
+          </div>
+          <div class="qa-step" data-aos="fade-right" data-aos-delay="100">
+            <div class="qa-step-num">02</div>
+            <div>
+              <h4>Functional & UI Testing</h4>
+              <p>Test all features, forms, CTAs, navigation, and user flows. Verify UI consistency across screen sizes and browsers.</p>
+            </div>
+          </div>
+          <div class="qa-step" data-aos="fade-right" data-aos-delay="150">
+            <div class="qa-step-num">03</div>
+            <div>
+              <h4>Regression & Edge Case Testing</h4>
+              <p>Test edge cases, boundary conditions, and ensure existing functionality isn't broken by new changes.</p>
+            </div>
+          </div>
+          <div class="qa-step" data-aos="fade-right" data-aos-delay="200">
+            <div class="qa-step-num">04</div>
+            <div>
+              <h4>Bug Report Document Delivery</h4>
+              <p>Receive a professional bug report with bug ID, severity, steps to reproduce, screenshots, and fix priority. Delivered within 48–72 hrs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="qa-perks" data-aos="fade-up" data-aos-delay="200">
+          <div class="qa-perk">
+            <div class="icon">🌐</div>
+            <strong>Cross-Browser</strong>
+            <p>Chrome, Firefox, Safari, Edge</p>
+          </div>
+          <div class="qa-perk">
+            <div class="icon">📱</div>
+            <strong>Responsive Testing</strong>
+            <p>Mobile, Tablet, Desktop</p>
+          </div>
+          <div class="qa-perk">
+            <div class="icon">📄</div>
+            <strong>Structured Document</strong>
+            <p>Professional PDF/Sheets report</p>
+          </div>
+          <div class="qa-perk">
+            <div class="icon">⏱️</div>
+            <strong>Fast Turnaround</strong>
+            <p>48–72 hour delivery</p>
+          </div>
+        </div>
+      </div>
+      <div class="qa-visual" data-aos="fade-left" data-aos-delay="100">
+        <div class="bug-report-card">
+          <div class="bug-report-header">
+            <div class="bug-dot" style="background:#ef4444;"></div>
+            <div class="bug-dot" style="background:#f59e0b;"></div>
+            <div class="bug-dot" style="background:#10b981;"></div>
+            <span style="margin-left:8px;font-size:13px;font-weight:700;color:var(--muted);">bug_report_v1.pdf</span>
+          </div>
+          <div style="margin-bottom:20px;">
+            <div style="font-size:12px;color:var(--cyan2);font-weight:700;letter-spacing:2px;margin-bottom:6px;">QA REPORT — SAMPLE PREVIEW</div>
+            <div style="font-size:18px;font-weight:800;">clientsite.com · v2.1</div>
+            <div style="font-size:13px;color:var(--muted);">Tested: Chrome, Firefox, Mobile · 47 test cases</div>
+          </div>
+          <div class="bug-report-row">
+            <span>#001 — Checkout form validation missing</span>
+            <span class="bug-sev sev-critical">Critical</span>
+          </div>
+          <div class="bug-report-row">
+            <span>#002 — Image overflow on 375px viewport</span>
+            <span class="bug-sev sev-high">High</span>
+          </div>
+          <div class="bug-report-row">
+            <span>#003 — CTA button color contrast fails WCAG</span>
+            <span class="bug-sev sev-medium">Medium</span>
+          </div>
+          <div class="bug-report-row">
+            <span>#004 — Footer links not opening new tab</span>
+            <span class="bug-sev sev-low">Low</span>
+          </div>
+          <div class="bug-report-row">
+            <span>#005 — 404 on /contact page (Safari)</span>
+            <span class="bug-sev sev-high">High</span>
+          </div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:13px;color:var(--muted);">
+            <span>12 bugs found · 3 critical</span>
+            <span style="color:var(--green);font-weight:700;">✓ Delivered in 48h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TECH STACK ═══════════ -->
+<section id="tech">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Tools of the <span class="gradient-text">Trade</span></h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="0"><div class="icon">⚛️</div><div class="name">React / Next.js</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="40"><div class="icon">🎨</div><div class="name">Tailwind CSS</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="80"><div class="icon">🅱️</div><div class="name">Bootstrap</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="120"><div class="icon">🌐</div><div class="name">HTML5</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="160"><div class="icon">🎨</div><div class="name">CSS3</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="200"><div class="icon">🐘</div><div class="name">PHP</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="240"><div class="icon">🟢</div><div class="name">Node.js</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="280"><div class="icon">📝</div><div class="name">WordPress</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="320"><div class="icon">🧩</div><div class="name">Strapi CMS</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="360"><div class="icon">☁️</div><div class="name">Cloudflare</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="400"><div class="icon">▲</div><div class="name">Vercel</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="440"><div class="icon">🗄️</div><div class="name">MySQL</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="480"><div class="icon">🔍</div><div class="name">Technical SEO</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROCESS ═══════════ -->
+<section class="process-section" id="process">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From Idea to Launch in <span class="gradient-text">4 Weeks</span></h2>
+      <p class="section-desc" style="margin:0 auto;">A clear, structured process so you always know what's happening and when.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="process-num">01</div>
+        <div class="process-timeline">Day 1</div>
+        <h3>Discovery Call</h3>
+        <p>Discuss project goals, target audience, and technical requirements. Audit of current site with recommendations.</p>
+      </div>
+      <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="process-num">02</div>
+        <div class="process-timeline">Week 1</div>
+        <h3>Design & Planning</h3>
+        <p>Wireframes, design mockups, and project roadmap. Website takes shape before development begins.</p>
+      </div>
+      <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="process-num">03</div>
+        <div class="process-timeline">Week 2–3</div>
+        <h3>Development</h3>
+        <p>Clean code, responsive design, SEO optimization, and performance tuning. Regular updates with staging access.</p>
+      </div>
+      <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="process-num">04</div>
+        <div class="process-timeline">Week 4</div>
+        <h3>Launch & Support</h3>
+        <p>Thorough testing, DNS/hosting setup, Google tools configuration, and post-launch monitoring.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
+      <div class="section-label">Client Reviews</div>
+      <h2 class="section-title">What Clients <span class="gradient-text">Say About Me</span></h2>
+      <p class="section-desc" style="margin:0 auto;">Real feedback from real businesses across India who trusted me with their digital growth.</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <!-- Sachin Raut — Featured -->
+      <div class="testi-card featured" data-aos="fade-up" data-aos-delay="0">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Sachin delivered an outstanding website that exceeded all our expectations. The performance scores were incredible — 95+ on PageSpeed right out of the box. He's not just a developer, he thinks like a business owner. Our leads have gone up significantly since the launch."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: linear-gradient(135deg, #7c3aed, #06b6d4);">SR</div>
+          <div>
+            <div class="testi-name">Sachin Raut</div>
+            <div class="testi-role">Business Owner · Mumbai, India</div>
+            <span class="testi-badge">✦ Website Development</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client 2 -->
+      <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The QA testing report Sachin delivered was incredibly detailed — every bug documented with steps to reproduce, severity levels, and screenshots. Our dev team could start fixing immediately. Worth every rupee."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: linear-gradient(135deg, #10b981, #06b6d4);">AP</div>
+          <div>
+            <div class="testi-name">Ankit Patel</div>
+            <div class="testi-role">Product Manager · Pune, India</div>
+            <span class="testi-badge" style="background:rgba(16,185,129,0.1);color:var(--green);border-color:rgba(16,185,129,0.2);">✦ QA Testing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client 3 -->
+      <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Our organic traffic jumped 180% in just 3 months after Sachin fixed our Core Web Vitals and set up proper schema markup. The SEO audit report was clear, prioritized, and actually actionable — not just a list of vague suggestions."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">RD</div>
+          <div>
+            <div class="testi-name">Riya Desai</div>
+            <div class="testi-role">Founder · Interior Design Firm · Mumbai</div>
+            <span class="testi-badge" style="background:rgba(245,158,11,0.1);color:var(--yellow);border-color:rgba(245,158,11,0.2);">✦ Technical SEO</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Trust strip -->
+    <div data-aos="fade-up" data-aos-delay="200" style="margin-top:48px;padding:28px 32px;border-radius:16px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div style="font-size:15px;font-weight:600;color:var(--text);">Trusted by <span class="gradient-text">15+ businesses</span> across India</div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+        <div style="font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;">✅ Response in 24 hrs</div>
+        <div style="font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;">✅ 100% Satisfaction</div>
+        <div style="font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;">✅ No Lock-in Contracts</div>
+        <a href="#contact" class="btn btn-primary" style="padding:10px 22px;font-size:13px;">Work With Me ✦</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PORTFOLIO ═══════════ -->
+<section id="work">
+  <div class="container">
+    <div data-aos="fade-up">
+      <div class="section-label">Recent Work</div>
+      <h2 class="section-title">Projects That <span class="gradient-text">Deliver Results</span></h2>
+    </div>
+    <div class="portfolio-grid">
+      <div class="card portfolio-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#7c3aed22,#06b6d415);">
+          🏠
+          <span class="portfolio-cat badge">Interior Design</span>
+        </div>
+        <h3>Aanvi Interior Website</h3>
+        <p>Modern, SEO-optimized corporate website for a turnkey interior execution firm, built to establish trust with high-profile corporate clients.</p>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;">React · shadcn/ui · TypeScript · SEO</div>
+        <div class="metrics-grid">
+          <div class="metric-pill"><div class="val">95+</div><div class="key">PageSpeed</div></div>
+          <div class="metric-pill"><div class="val">+180%</div><div class="key">Organic Traffic</div></div>
+          <div class="metric-pill"><div class="val">50+</div><div class="key">Keywords Ranked</div></div>
+        </div>
+      </div>
+      <div class="card portfolio-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#06b6d422,#10b98115);">
+          💻
+          <span class="portfolio-cat badge">Software Dev</span>
+        </div>
+        <h3>Headless CMS Portfolio</h3>
+        <p>Next.js 16 + Strapi 5 headless CMS portfolio with blog, PWA, server-side rendering, and automated SEO — a modern web benchmark.</p>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;">Next.js · Strapi · PWA · Tailwind CSS</div>
+        <div class="metrics-grid">
+          <div class="metric-pill"><div class="val">98</div><div class="key">Lighthouse Score</div></div>
+          <div class="metric-pill"><div class="val">&lt;2s</div><div class="key">Build Time</div></div>
+          <div class="metric-pill"><div class="val">100%</div><div class="key">Core Web Vitals</div></div>
+        </div>
+      </div>
+      <div class="card portfolio-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#f59e0b22,#ef444415);">
+          🚗
+          <span class="portfolio-cat badge">SaaS / Automotive</span>
+        </div>
+        <h3>Garage Management SaaS</h3>
+        <p>Multi-tenant SaaS for automotive service centers with real-time analytics, automated WhatsApp reminders, digital billing, and PWA customer portal.</p>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;">React · Node.js · MySQL · Socket.IO</div>
+        <div class="metrics-grid">
+          <div class="metric-pill"><div class="val">-80%</div><div class="key">Admin Time</div></div>
+          <div class="metric-pill"><div class="val">+30%</div><div class="key">Retention</div></div>
+          <div class="metric-pill"><div class="val">100%</div><div class="key">Digitized</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+    </div>
+    <div class="faq-list" data-aos="fade-up" data-aos-delay="100">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does it take to build a website?
+          <span class="faq-chevron">⌄</span>
+        </button>
+        <div class="faq-a">Most projects are completed within 2–4 weeks. Simple sites take 1–2 weeks, while complex projects (e-commerce, custom web apps) may take 4–6 weeks. A precise timeline is provided after the discovery call.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you provide hosting and domain setup?
+          <span class="faq-chevron">⌄</span>
+        </button>
+        <div class="faq-a">Yes — VPS server configuration (OpenLiteSpeed), Cloudflare CDN, SSL certificates, DNS management, and complete infrastructure setup are available. Platforms supported include Hostinger, Netlify, Vercel, and Render.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does the QA Testing service include?
+          <span class="faq-chevron">⌄</span>
+        </button>
+        <div class="faq-a">The QA Testing service includes functional testing, UI/UX testing, cross-browser testing (Chrome, Firefox, Safari, Edge), mobile responsiveness testing, and regression testing. You receive a professional bug report document with bug IDs, severity levels, steps to reproduce, and screenshots — delivered within 48–72 hours.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do you ensure my website will rank on Google?
+          <span class="faq-chevron">⌄</span>
+        </button>
+        <div class="faq-a">Technical SEO is built into every project: proper semantic HTML, schema markup, Core Web Vitals optimization, mobile-first indexing ready design, XML sitemaps, and Google Search Console setup are all included by default.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I own the website and source code?
+          <span class="faq-chevron">⌄</span>
+        </button>
+        <div class="faq-a">Yes, 100%. You own everything — design files, complete source code, hosting credentials, domain access, and all assets. No lock-in, no recurring ownership fees. Full handover on launch day.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What payment terms do you offer?
+          <span class="faq-chevron">⌄</span>
+        </button>
+        <div class="faq-a">Typical structure: 30% upfront, 40% after design approval, 30% upon launch. Milestone-based payments available for larger projects. Accepted: bank transfer, UPI, PayPal, and Stripe.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can you work with my existing website?
+          <span class="faq-chevron">⌄</span>
+        </button>
+        <div class="faq-a">Absolutely — website audits, performance optimization, migration to faster hosting, security updates, QA testing, and complete redesign services are all available for existing websites.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT FORM ═══════════ -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;max-width:600px;margin:0 auto 0;">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's Build Something <span class="gradient-text">Amazing</span></h2>
+      <p class="section-desc" style="margin:0 auto;">Free audit included. Response within 24 hours. No credit card required.</p>
+    </div>
+    <div class="contact-grid">
+      <!-- Left: Info -->
+      <div data-aos="fade-right">
+        <h3>Ready to grow your business?</h3>
+        <p>Whether you need a brand new website, an SEO deep-dive, or a professional QA bug report — I'm here to help. Let's talk.</p>
+        <div class="contact-links">
+          <a href="mailto:sachinraut0310@gmail.com" class="contact-link">
+            <div class="contact-link-icon">📧</div>
+            <div>
+              <strong>Email</strong>
+              <span>sachinraut0310@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://sachinraut.in" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🌐</div>
+            <div>
+              <strong>Website</strong>
+              <span>sachinraut.in</span>
+            </div>
+          </a>
+          <div class="contact-link" style="cursor:default;">
+            <div class="contact-link-icon">📍</div>
+            <div>
+              <strong>Location</strong>
+              <span>Mumbai, Maharashtra, India</span>
+            </div>
+          </div>
+        </div>
+        <div class="audit-box" style="margin-top:24px;">
+          <div style="font-size:22px;margin-bottom:8px;">🎁</div>
+          <strong style="font-size:16px;">Free Performance Audit — Worth ₹5,000</strong>
+          <p style="margin-top:6px;">Includes Lighthouse scores, Core Web Vitals review, SEO audit, and actionable recommendations. Limited to 3 projects/month.</p>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div data-aos="fade-left">
+        <div class="form-card">
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Full Name *</label>
+                <input type="text" id="fname" placeholder="Rahul Sharma" required />
+              </div>
+              <div class="form-group">
+                <label for="fphone">Phone Number *</label>
+                <input type="tel" id="fphone" placeholder="+91 98765 43210" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="femail">Email Address *</label>
+              <input type="email" id="femail" placeholder="rahul@company.com" required />
+            </div>
+
+            <!-- Service Checkboxes -->
+            <div class="form-group">
+              <label>What do you need? * <span style="color:var(--muted);font-weight:400;">(Select all that apply)</span></label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="service" value="new-website" id="chk-new" onchange="handleCheckbox()" />
+                  <span class="custom-check">✓</span>
+                  <span class="check-icon">🚀</span>
+                  <div>
+                    <strong>Build a New Website</strong>
+                    <div style="font-size:12px;color:var(--muted);font-weight:400;">Custom WordPress, Next.js, or CRM/SaaS</div>
+                  </div>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="service" value="seo-report" id="chk-seo" onchange="handleCheckbox()" />
+                  <span class="custom-check">✓</span>
+                  <span class="check-icon">📈</span>
+                  <div>
+                    <strong>SEO Audit & Performance Report</strong>
+                    <div style="font-size:12px;color:var(--muted);font-weight:400;">Core Web Vitals, rankings, speed analysis</div>
+                  </div>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="service" value="qa-testing" id="chk-qa" onchange="handleCheckbox()" />
+                  <span class="custom-check">✓</span>
+                  <span class="check-icon">🔬</span>
+                  <div>
+                    <strong>QA Testing & Bug Report</strong>
+                    <div style="font-size:12px;color:var(--muted);font-weight:400;">Manual testing with professional bug document</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Conditional: Existing Website URL -->
+            <div class="conditional-field" id="websiteField">
+              <div class="form-group" style="margin:0;">
+                <label for="fwebsite">Your Website URL</label>
+                <input type="url" id="fwebsite" placeholder="https://yourwebsite.com" />
+                <div style="font-size:12px;color:var(--muted);margin-top:6px;">Required for SEO audit and QA testing services</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fmessage">Tell me about your project</label>
+              <textarea id="fmessage" placeholder="Briefly describe what you need, your timeline, budget range, or any specific requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+              Send Message & Get Free Audit ✦
+            </button>
+            <p class="form-note">🔒 Your details are safe. No spam, ever. Response within 24 hours.</p>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">🎉</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. I'll get back to you within 24 hours with your free audit and next steps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STICKY FLOATING BUTTONS ═══════════ -->
+<div class="sticky-btns">
+  <!-- WhatsApp -->
+  <a href="https://wa.me/917304705124" target="_blank" class="sticky-btn whatsapp" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="sticky-tooltip">Chat on WhatsApp</span>
+  </a>
+
+  <div class="sticky-divider"></div>
+
+  <!-- Call — mobile only -->
+  <div class="sticky-btn-call-wrap">
+    <a href="tel:+917304705124" class="sticky-btn call" aria-label="Call">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+      <span class="sticky-tooltip">Call Now</span>
+    </a>
+    <div class="sticky-divider"></div>
+  </div>
+
+  <!-- Email -->
+  <a href="mailto:sachinraut0310@gmail.com" class="sticky-btn mail" aria-label="Email">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
+      <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
+    <span class="sticky-tooltip">Send Email</span>
+  </a>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="container">
+    <div style="margin-bottom:20px;display:flex;justify-content:center;">
+      <img src="sachin-raut-logo.svg" alt="Sachin Raut" style="height:52px;width:auto;" />
+    </div>
+    <p style="margin-bottom:8px;">
+      <a href="privacy-policy.html" style="color:var(--muted);margin:0 12px;font-size:13px;">Privacy Policy</a>
+      <a href="terms-and-conditions.html" style="color:var(--muted);margin:0 12px;font-size:13px;">Terms & Conditions</a>
+      <a href="mailto:sachinraut0310@gmail.com" style="color:var(--muted);margin:0 12px;font-size:13px;">sachinraut0310@gmail.com</a>
+    </p>
+    <p>© 2026 Sachin Raut · Mumbai, India · All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+/* ══════════════════════════════════════════════
+   CONFIG — Yahan apni details bharni hain
+   (Setup guide padho niche)
+══════════════════════════════════════════════ */
+const CONFIG = {
+  // EmailJS — https://www.emailjs.com se lena
+  EMAILJS_PUBLIC_KEY:  '3d-cT-bl7e0K8reJd',      // EmailJS Public Key
+  EMAILJS_SERVICE_ID:  'service_8imtztr',      // EmailJS Service ID
+  EMAILJS_TEMPLATE_ID: 'template_ve7p3ve',     // EmailJS Template ID
+
+  // Google Sheets — Apps Script Web App URL
+  GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbwkciuZkuo_fxt3NvUzRtQLiS0WhJDbdXZ2-5JoVgLpsuVuIXj_-JBARGe26igi0VdO/exec'
+};
+
+/* ── INIT EmailJS ── */
+emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
+
+/* ══════════════════════════════════════════════
+   DARK / LIGHT THEME TOGGLE
+══════════════════════════════════════════════ */
+const THEME_KEY = 'sr-theme';
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const icon = theme === 'light' ? '☀️' : '🌙';
+  const btnD = document.getElementById('themeBtn');
+  const btnM = document.getElementById('themeBtnMobile');
+  if (btnD) btnD.textContent = icon;
+  if (btnM) btnM.textContent = icon;
+  localStorage.setItem(THEME_KEY, theme);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+/* Load saved theme on page start */
+(function() {
+  const saved = localStorage.getItem(THEME_KEY) || 'dark';
+  applyTheme(saved);
+})();
+
+/* ── INIT AOS ── */
+AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic', offset: 60 });
+
+/* ── TYPED.JS ── */
+new Typed('#typed-text', {
+  strings: [
+    'Full-Stack Developer',
+    'Technical SEO Specialist',
+    'Manual QA Tester',
+    'Next.js & WordPress Expert',
+    'Bug Report Specialist'
+  ],
+  typeSpeed: 50,
+  backSpeed: 30,
+  backDelay: 2000,
+  loop: true,
+  cursorChar: '|'
+});
+
+/* ── NAVBAR SCROLL ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  // Progress bar
+  const prog = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progress-bar').style.width = prog + '%';
+  // Counter trigger
+  triggerCounters();
+});
+
+/* ── MOBILE MENU ── */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── FAQ ACCORDION ── */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ══════════════════════════════════════════════
+   CORE: Email + Google Sheet submit
+══════════════════════════════════════════════ */
+async function submitLeadData(formData, btnEl, formEl, successEl) {
+  // Button loading state
+  const origText = btnEl.innerHTML;
+  btnEl.innerHTML = '⏳ Sending...';
+  btnEl.disabled = true;
+
+  const services = formData.services.length ? formData.services.join(', ') : 'Not specified';
+  const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+  let emailOk = false;
+  let sheetOk = false;
+
+  /* ── 1. Send Email via EmailJS ── */
+  try {
+    await emailjs.send(
+      CONFIG.EMAILJS_SERVICE_ID,
+      CONFIG.EMAILJS_TEMPLATE_ID,
+      {
+        from_name:  formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone,
+        services:   services,
+        website:    formData.website || 'N/A',
+        message:    formData.message || 'No message',
+        timestamp:  timestamp,
+        reply_to:   formData.email,
+      }
+    );
+    emailOk = true;
+  } catch (err) {
+    console.warn('EmailJS error:', err);
+  }
+
+  /* ── 2. Save to Google Sheet ── */
+  try {
+    const payload = {
+      timestamp,
+      name:    formData.name,
+      email:   formData.email,
+      phone:   formData.phone,
+      service: services,
+      website: formData.website || '',
+      message: formData.message || '',
+      source:  formData.source   // 'hero' or 'contact'
+    };
+    await fetch(CONFIG.GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode:   'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    sheetOk = true;
+  } catch (err) {
+    console.warn('Google Sheet error:', err);
+  }
+
+  /* ── Show success or error ── */
+  if (emailOk || sheetOk) {
+    btnEl.innerHTML = '✅ Redirecting...';
+    setTimeout(() => {
+      window.location.href = 'thank-you.html';
+    }, 600);
+  } else {
+    btnEl.innerHTML = '❌ Failed — Try Again';
+    btnEl.disabled = false;
+    setTimeout(() => {
+      btnEl.innerHTML = origText;
+    }, 3000);
+  }
+}
+
+/* ── CHECKBOX → CONDITIONAL FIELD (bottom contact form) ── */
+function handleCheckbox() {
+  const seo = document.getElementById('chk-seo').checked;
+  const qa  = document.getElementById('chk-qa').checked;
+  const field = document.getElementById('websiteField');
+  if (seo || qa) {
+    field.classList.add('visible');
+    document.getElementById('fwebsite').required = true;
+  } else {
+    field.classList.remove('visible');
+    document.getElementById('fwebsite').required = false;
+  }
+}
+
+/* ── CHECKBOX → CONDITIONAL FIELD (hero form) ── */
+function handleHeroCheckbox() {
+  const seo = document.getElementById('hchk-seo').checked;
+  const qa  = document.getElementById('hchk-qa').checked;
+  const field = document.getElementById('heroWebsiteField');
+  if (seo || qa) {
+    field.classList.add('visible');
+    document.getElementById('hwebsite').required = true;
+  } else {
+    field.classList.remove('visible');
+    document.getElementById('hwebsite').required = false;
+  }
+}
+
+/* ── FORM SUBMIT (bottom contact form) ── */
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const services = [...document.querySelectorAll('input[name="service"]:checked')]
+                    .map(el => el.value);
+  const formData = {
+    name:    document.getElementById('fname').value.trim(),
+    email:   document.getElementById('femail').value.trim(),
+    phone:   document.getElementById('fphone').value.trim(),
+    website: document.getElementById('fwebsite').value.trim(),
+    message: document.getElementById('fmessage').value.trim(),
+    services,
+    source: 'Contact Section'
+  };
+  await submitLeadData(
+    formData, btn,
+    document.getElementById('contactForm'),
+    document.getElementById('formSuccess')
+  );
+}
+
+/* ── FORM SUBMIT (hero form) ── */
+async function handleHeroSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const services = [...document.querySelectorAll('input[name="hservice"]:checked')]
+                    .map(el => el.value);
+  const formData = {
+    name:    document.getElementById('hname').value.trim(),
+    email:   document.getElementById('hemail').value.trim(),
+    phone:   document.getElementById('hphone').value.trim(),
+    website: document.getElementById('hwebsite')?.value.trim() || '',
+    message: '',
+    services,
+    source: 'Hero Section'
+  };
+  await submitLeadData(
+    formData, btn,
+    document.getElementById('heroForm'),
+    document.getElementById('heroFormSuccess')
+  );
+}
+
+/* ── COUNTER ANIMATION ── */
+let countersStarted = false;
+function triggerCounters() {
+  if (countersStarted) return;
+  const hero = document.querySelector('.hero-trust');
+  if (!hero) return;
+  const rect = hero.getBoundingClientRect();
+  if (rect.top < window.innerHeight) {
+    countersStarted = true;
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      const suffix = el.textContent.includes('+') || target === 15 ? '+' :
+                     el.textContent.includes('%') ? '%' : '';
+      let start = 0;
+      const step = Math.ceil(target / 60);
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = start + (target === 100 ? '%' : target === 15 || target === 98 ? '+' : '');
+        if (start >= target) clearInterval(timer);
+      }, 25);
+    });
+  }
+}
+
+/* ── PARTICLE CANVAS ── */
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 1.5 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.color = Math.random() > 0.5 ? '#7c3aed' : '#06b6d4';
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.opacity;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  // Draw connections
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        ctx.save();
+        ctx.globalAlpha = (1 - dist/100) * 0.08;
+        ctx.strokeStyle = '#7c3aed';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+        ctx.restore();
+        }
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+</script>
+</body>
+</html>

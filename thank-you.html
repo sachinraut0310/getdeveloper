@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Sachin Raut</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #06060f;
+      --purple:  #7c3aed;
+      --purple2: #a855f7;
+      --cyan:    #06b6d4;
+      --cyan2:   #22d3ee;
+      --green:   #10b981;
+      --text:    #f1f5f9;
+      --muted:   #94a3b8;
+      --border:  rgba(255,255,255,0.08);
+      --grad:    linear-gradient(135deg, #7c3aed, #a855f7, #06b6d4);
+    }
+    html[data-theme="light"] {
+      --bg:    #f0f4ff;
+      --text:  #0f172a;
+      --muted: #4b5563;
+      --border: rgba(100,80,200,0.15);
+    }
+    html[data-theme="light"] .check-wrap {
+      background: linear-gradient(135deg,rgba(16,185,129,0.1),rgba(16,185,129,0.03));
+    }
+    html[data-theme="light"] .card {
+      background: rgba(255,255,255,0.8);
+      border-color: rgba(100,80,200,0.15);
+    }
+    html[data-theme="light"] .btn-outline { color: var(--text); border-color: rgba(100,80,200,0.2); }
+    html[data-theme="light"] #canvas { opacity: 0.1; }
+    html[data-theme="light"] .orb-1 { background: rgba(124,58,237,0.08); }
+    html[data-theme="light"] .orb-2 { background: rgba(6,182,212,0.06); }
+    html[data-theme="light"] .timer-bar-track { background: rgba(0,0,0,0.08); }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      transition: background .4s ease, color .4s ease;
+    }
+
+    /* ── Particle canvas ── */
+    #canvas {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      opacity: 0.35;
+    }
+
+    /* ── Orbs ── */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(90px); pointer-events: none; z-index: 0;
+    }
+    .orb-1 { width: 500px; height: 500px; background: rgba(124,58,237,0.15); top: -150px; right: -150px; animation: orbf 8s ease-in-out infinite; }
+    .orb-2 { width: 350px; height: 350px; background: rgba(6,182,212,0.1); bottom: -100px; left: -100px; animation: orbf 8s ease-in-out infinite reverse; }
+    @keyframes orbf { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
+
+    /* ── Main wrapper ── */
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    /* ── Checkmark animation ── */
+    .check-wrap {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+      border: 2px solid rgba(16,185,129,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 32px;
+      animation: popIn .6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+      box-shadow: 0 0 60px rgba(16,185,129,0.15);
+    }
+    .check-svg {
+      width: 52px; height: 52px;
+    }
+    .check-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke: #10b981;
+      stroke-width: 3;
+      fill: none;
+      animation: drawCircle .8s ease forwards .3s;
+    }
+    .check-mark {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      stroke: #10b981;
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: drawCheck .4s ease forwards 1s;
+    }
+    @keyframes drawCircle { to { stroke-dashoffset: 0; } }
+    @keyframes drawCheck  { to { stroke-dashoffset: 0; } }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Content ── */
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 16px; border-radius: 99px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.25);
+      color: #10b981;
+      margin-bottom: 20px;
+      animation: fadeUp .5s ease both .4s;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 16px;
+      animation: fadeUp .5s ease both .5s;
+    }
+    .gradient-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 17px; color: var(--muted);
+      max-width: 480px; line-height: 1.7;
+      margin: 0 auto 40px;
+      animation: fadeUp .5s ease both .6s;
+    }
+
+    /* ── Cards row ── */
+    .cards {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      justify-content: center; margin-bottom: 44px;
+      animation: fadeUp .5s ease both .7s;
+    }
+    .card {
+      padding: 16px 20px; border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 500;
+      min-width: 160px;
+    }
+    .card-icon { font-size: 22px; }
+
+    /* ── Buttons ── */
+    .btns {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp .5s ease both .8s;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 99px;
+      font-weight: 700; font-size: 15px;
+      cursor: pointer; border: none; text-decoration: none;
+      transition: all .3s ease; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--grad); color: #fff;
+      box-shadow: 0 0 30px rgba(124,58,237,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(124,58,237,0.55); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: rgba(124,58,237,0.5); transform: translateY(-2px); }
+
+    /* ── Timer bar ── */
+    .timer-wrap {
+      margin-top: 36px;
+      animation: fadeUp .5s ease both .9s;
+    }
+    .timer-text {
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .timer-bar-track {
+      width: 220px; height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px; overflow: hidden;
+      margin: 0 auto;
+    }
+    .timer-bar-fill {
+      height: 100%; border-radius: 99px;
+      background: var(--grad);
+      animation: timerDown 8s linear forwards;
+    }
+    @keyframes timerDown { from { width: 100%; } to { width: 0%; } }
+
+    /* ── Logo top ── */
+    .logo-top {
+      position: fixed; top: 20px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      animation: fadeDown .5s ease both .2s;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-top img { height: 56px; width: auto; }
+    .theme-toggle-ty {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      cursor: pointer; font-size: 17px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; backdrop-filter: blur(8px);
+    }
+    html[data-theme="light"] .theme-toggle-ty { background: rgba(255,255,255,0.7); }
+    .theme-toggle-ty:hover { transform: rotate(20deg) scale(1.1); border-color: #a855f7; }
+
+    @keyframes fadeUp   { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform: translateX(-50%) translateY(-10px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 28px; }
+      .subtitle { font-size: 15px; }
+      .cards { gap: 10px; }
+      .card { min-width: 140px; font-size: 13px; }
+      .btn { font-size: 14px; padding: 12px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- Logo -->
+<div class="logo-top">
+  <a href="index.html"><img src="sachin-raut-logo.svg" alt="Sachin Raut" /></a>
+  <button class="theme-toggle-ty" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+</div>
+
+<!-- Main Content -->
+<div class="page" style="padding-top: 110px;">
+
+  <!-- Animated checkmark -->
+  <div class="check-wrap">
+    <svg class="check-svg" viewBox="0 0 52 52">
+      <circle class="check-circle" cx="26" cy="26" r="25"/>
+      <path class="check-mark" d="M14 27 l8 8 l16-16"/>
+    </svg>
+  </div>
+
+  <div class="tag">✦ Submission Received</div>
+
+  <h1>Thank You for<br/>Reaching Out <span class="gradient-text">🙌</span></h1>
+
+  <p class="subtitle">
+    Your message has been received successfully. I'll personally review your requirements and get back to you within <strong style="color:var(--text);">24 hours</strong> with a tailored response.
+  </p>
+
+  <!-- What happens next -->
+  <div class="cards">
+    <div class="card">
+      <span class="card-icon">📧</span>
+      <span>Check your email for confirmation</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">⏰</span>
+      <span>Response within 24 hours</span>
+    </div>
+    <div class="card">
+      <span class="card-icon">🎁</span>
+      <span>Free audit being prepared</span>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="btns">
+    <a href="index.html" class="btn btn-primary">← Back to Home</a>
+    <a href="index.html#work" class="btn btn-outline">View Portfolio</a>
+  </div>
+
+  <!-- Auto redirect timer -->
+  <div class="timer-wrap">
+    <p class="timer-text" id="timerText">Redirecting to home in <strong>8</strong> seconds...</p>
+    <div class="timer-bar-track">
+      <div class="timer-bar-fill"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ── Theme Toggle ── */
+const THEME_KEY = 'sr-theme';
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  const btn = document.getElementById('themeBtn');
+  if (btn) btn.textContent = t === 'light' ? '☀️' : '🌙';
+  localStorage.setItem(THEME_KEY, t);
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(cur === 'dark' ? 'light' : 'dark');
+}
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+
+/* ── Particles ── */
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+class P {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.r = Math.random() * 1.2 + 0.4;
+    this.vx = (Math.random() - 0.5) * 0.25;
+    this.vy = (Math.random() - 0.5) * 0.25;
+    this.a = Math.random() * 0.4 + 0.1;
+    this.c = Math.random() > 0.5 ? '#7c3aed' : '#06b6d4';
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.save(); ctx.globalAlpha = this.a;
+    ctx.fillStyle = this.c;
+    ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+}
+for (let i = 0; i < 80; i++) particles.push(new P());
+function anim() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(anim);
+}
+anim();
+
+/* ── Auto redirect countdown ── */
+let secs = 8;
+const timerEl = document.getElementById('timerText');
+const interval = setInterval(() => {
+  secs--;
+  if (secs <= 0) {
+    clearInterval(interval);
+    window.location.href = 'index.html';
+  } else {
+    timerEl.innerHTML = `Redirecting to home in <strong>${secs}</strong> seconds...`;
+  }
+}, 1000);
+</script>
+</body></html>
