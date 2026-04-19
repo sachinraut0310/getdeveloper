@@ -57,25 +57,6 @@
     .section-title { font-size: clamp(28px,4vw,42px); font-weight: 800; margin-bottom: 16px; }
     .section-desc { color: var(--muted); font-size: 16px; line-height: 1.8; max-width: 580px; }
 
-    /* NAVBAR */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 0; background: var(--navbar-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background .4s; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .nav-logo img { height: 42px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-    .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { display: flex; align-items: center; gap: 12px; }
-    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center; transition: all .3s; backdrop-filter: blur(8px); }
-    .theme-toggle:hover { transform: rotate(20deg) scale(1.1); border-color: var(--purple2); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
-    @media (max-width: 900px) { .nav-links { display: none; } .nav-cta { display: none; } .hamburger { display: flex; } }
-    .mobile-menu { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; transform: translateX(100%); transition: transform .4s cubic-bezier(0.4,0,0.2,1); }
-    .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu a { font-size: 24px; font-weight: 700; color: var(--text); }
-    .mobile-menu a:hover { color: var(--purple2); }
-    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 28px; cursor: pointer; color: var(--muted); }
-
     /* PAGE HERO */
     .page-hero { padding: 80px 0 60px; margin-top: 72px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
     .page-hero::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: rgba(124,58,237,0.06); filter: blur(100px); top: -200px; right: -100px; pointer-events: none; }
@@ -159,53 +140,12 @@
       z-index: 0; pointer-events: none; display: block;
     }
     html[data-theme="light"] #bg-canvas { opacity: 0.65; }
-    .navbar, .mobile-menu, footer { position: relative; z-index: 10; }
+    footer { position: relative; z-index: 10; }
     .page-hero, .content-section, .tech-section, .cta-section { position: relative; z-index: 1; }
-
-    /* mobile theme btn */
-    #themeBtnMobile { display: none; }
-    @media (max-width: 900px) { #themeBtnMobile { display: flex !important; } }
   </style>
 </head>
 <body>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <span class="mobile-close" onclick="toggleMenu()">✕</span>
-  <a href="index.html" onclick="toggleMenu()">Home</a>
-  <a href="web-development.html" onclick="toggleMenu()" class="active">Web Development</a>
-  <a href="seo.html" onclick="toggleMenu()">Technical SEO</a>
-  <a href="qa-testing.html" onclick="toggleMenu()">QA Testing</a>
-  <a href="index.html#work" onclick="toggleMenu()">Portfolio</a>
-  <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
-</div>
-
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="sachin-raut-logo.svg" alt="Sachin Raut" />
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="web-development.html" class="active">Web Development</a></li>
-        <li><a href="seo.html">Technical SEO</a></li>
-        <li><a href="qa-testing.html">QA Testing</a></li>
-        <li><a href="index.html#work">Portfolio</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
-      </ul>
-      <div class="nav-cta">
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle theme">🌙</button>
-        <a href="index.html#contact" class="btn btn-primary" style="padding:10px 22px;font-size:13px;">Get Free Audit ✦</a>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtnMobile" style="display:none;" aria-label="Toggle theme">🌙</button>
-        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-      </div>
-    </div>
-  </div>
-</nav>
+<script src="navbar.js"></script>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
@@ -389,19 +329,9 @@
   </div>
 </footer>
 
+<canvas id="bg-canvas"></canvas>
 <script>
 AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic', offset: 60 });
-function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-const THEME_KEY = 'sr-theme';
-function applyTheme(t) {
-  document.documentElement.setAttribute('data-theme', t);
-  const icon = t === 'light' ? '☀️' : '🌙';
-  ['themeBtn','themeBtnMobile'].forEach(id => { const b = document.getElementById(id); if(b) b.textContent = icon; });
-  localStorage.setItem(THEME_KEY, t);
-}
-function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
-applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
-
 /* ── PARTICLE CANVAS ── */
 (function(){
   const canvas = document.getElementById('bg-canvas');
@@ -437,6 +367,5 @@ applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
   draw();
 })();
 </script>
-<canvas id="bg-canvas"></canvas>
 </body>
 </html>
