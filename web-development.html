@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Development Services — Sachin Raut</title>
+  <meta name="description" content="Custom WordPress, Next.js & Full-Stack Website Development by Sachin Raut. 95+ PageSpeed guaranteed, 100% code ownership, responsive & SEO-ready." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #06060f; --bg2: #0d0d1f; --bg3: #111128;
+      --surface:  rgba(255,255,255,0.04);
+      --border:   rgba(255,255,255,0.08);
+      --purple:   #7c3aed; --purple2: #a855f7;
+      --cyan:     #06b6d4; --cyan2:   #22d3ee;
+      --green:    #10b981; --yellow:  #f59e0b; --red: #ef4444;
+      --text:     #f1f5f9; --muted:   #94a3b8;
+      --grad:     linear-gradient(135deg, #7c3aed, #a855f7, #06b6d4);
+      --navbar-bg: rgba(6,6,15,0.85);
+    }
+    html[data-theme="light"] {
+      --bg: #f0f4ff; --bg2: #e8eeff; --bg3: #dde4f8;
+      --surface: rgba(255,255,255,0.75);
+      --border: rgba(100,80,200,0.15);
+      --text: #0f172a; --muted: #4b5563;
+      --navbar-bg: rgba(240,244,255,0.88);
+    }
+    html[data-theme="light"] .webdev-step,
+    html[data-theme="light"] .webdev-feature,
+    html[data-theme="light"] .webdev-perk { background: rgba(255,255,255,0.7); }
+    html[data-theme="light"] .webdev-visual-card { background: rgba(255,255,255,0.8); }
+    html[data-theme="light"] .browser-bar { background: rgba(0,0,0,0.04); }
+    html[data-theme="light"] footer { background: var(--bg2); }
+    html[data-theme="light"] .navbar { background: var(--navbar-bg); }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; transition: background .4s, color .4s; }
+    h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }
+    a { text-decoration: none; color: inherit; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 99px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .gradient-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 15px; cursor: pointer; border: none; transition: all .3s ease; text-decoration: none; white-space: nowrap; }
+    .btn-primary { background: var(--grad); color: #fff; box-shadow: 0 0 30px rgba(124,58,237,0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(124,58,237,0.5); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: rgba(124,58,237,0.5); transform: translateY(-2px); }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple2); margin-bottom: 12px; }
+    .section-title { font-size: clamp(28px,4vw,42px); font-weight: 800; margin-bottom: 16px; }
+    .section-desc { color: var(--muted); font-size: 16px; line-height: 1.8; max-width: 580px; }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 0; background: var(--navbar-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: background .4s; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-logo img { height: 42px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center; transition: all .3s; backdrop-filter: blur(8px); }
+    .theme-toggle:hover { transform: rotate(20deg) scale(1.1); border-color: var(--purple2); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-cta { display: none; } .hamburger { display: flex; } }
+    .mobile-menu { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; transform: translateX(100%); transition: transform .4s cubic-bezier(0.4,0,0.2,1); }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a { font-size: 24px; font-weight: 700; color: var(--text); }
+    .mobile-menu a:hover { color: var(--purple2); }
+    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 28px; cursor: pointer; color: var(--muted); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 80px 0 60px; margin-top: 72px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: rgba(124,58,237,0.06); filter: blur(100px); top: -200px; right: -100px; pointer-events: none; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--purple2); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .page-hero-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 99px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.25); color: var(--purple2); margin-bottom: 20px; }
+    .page-hero h1 { font-size: clamp(32px,5vw,56px); font-weight: 800; margin-bottom: 20px; }
+    .page-hero p { color: var(--muted); font-size: 17px; line-height: 1.8; max-width: 600px; margin-bottom: 32px; }
+    .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 8px; }
+    .hero-stat-num { font-size: 28px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* MAIN CONTENT */
+    .content-section { padding: 100px 0; }
+    .webdev-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+    .webdev-steps { display: flex; flex-direction: column; gap: 24px; }
+    .webdev-step { display: flex; gap: 20px; align-items: flex-start; padding: 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); transition: all .3s ease; }
+    .webdev-step:hover { border-color: rgba(124,58,237,0.4); transform: translateX(8px); }
+    .webdev-step-icon { min-width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg,rgba(124,58,237,0.2),rgba(168,85,247,0.15)); color: var(--purple2); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .webdev-step h4 { font-size: 16px; margin-bottom: 4px; }
+    .webdev-step p { color: var(--muted); font-size: 13px; }
+    .webdev-perks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+    .webdev-perk { padding: 16px; border-radius: 12px; background: rgba(124,58,237,0.05); border: 1px solid rgba(124,58,237,0.1); text-align: center; }
+    .webdev-perk .icon { font-size: 22px; margin-bottom: 8px; }
+    .webdev-perk strong { display: block; font-size: 13px; color: var(--text); margin-bottom: 4px; }
+    .webdev-perk p { font-size: 12px; color: var(--muted); }
+    .webdev-visual-card { background: var(--bg3); border: 1px solid rgba(124,58,237,0.2); border-radius: 20px; padding: 32px; box-shadow: 0 0 60px rgba(124,58,237,0.08); position: sticky; top: 100px; }
+    .webdev-visual-header { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-bar { flex: 1; height: 28px; background: rgba(255,255,255,0.05); border-radius: 6px; display: flex; align-items: center; padding: 0 12px; font-size: 11px; color: var(--muted); border: 1px solid var(--border); }
+    .webdev-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .webdev-stat { padding: 14px; border-radius: 10px; background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.12); text-align: center; }
+    .webdev-stat .val { font-size: 22px; font-weight: 800; color: var(--purple2); }
+    .webdev-stat .key { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .webdev-feature-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .webdev-feature { display: flex; gap: 10px; align-items: center; font-size: 13px; padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--border); }
+    .webdev-feature .check { color: var(--purple2); font-weight: 700; }
+
+    /* TECH STACK */
+    .tech-section { padding: 80px 0; background: var(--bg2); border-top: 1px solid var(--border); }
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: 16px; margin-top: 50px; }
+    .tech-card { padding: 22px 16px; text-align: center; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); transition: all .3s; }
+    .tech-card:hover { border-color: rgba(124,58,237,0.4); transform: translateY(-4px); }
+    .tech-card .icon { font-size: 28px; margin-bottom: 8px; }
+    .tech-card .name { font-size: 12px; font-weight: 600; color: var(--muted); }
+
+    /* CTA */
+    .cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border); }
+    .cta-box { max-width: 640px; margin: 0 auto; }
+    .cta-box h2 { font-size: clamp(28px,4vw,42px); font-weight: 800; margin-bottom: 16px; }
+    .cta-box p { color: var(--muted); font-size: 16px; margin-bottom: 36px; line-height: 1.8; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 0; text-align: center; }
+    footer p { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+    .foot-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+    .foot-links a { color: var(--muted); font-size: 13px; transition: color .2s; }
+    .foot-links a:hover { color: var(--text); }
+
+    @media (max-width: 900px) {
+      .webdev-grid { grid-template-columns: 1fr; gap: 48px; }
+      .webdev-visual-card { position: static; }
+    }
+    @media (max-width: 640px) {
+      .page-hero { text-align: center; }
+      .page-hero p { margin-left: auto; margin-right: auto; }
+      .hero-stats { justify-content: center; gap: 20px; }
+      .page-hero > .container > div[style] { display: flex; flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 16px; }
+      .webdev-perks { grid-template-columns: 1fr 1fr; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+
+    /* ── PARTICLE CANVAS ── */
+    #bg-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none; display: block;
+    }
+    html[data-theme="light"] #bg-canvas { opacity: 0.65; }
+    .navbar, .mobile-menu, footer { position: relative; z-index: 10; }
+    .page-hero, .content-section, .tech-section, .cta-section { position: relative; z-index: 1; }
+
+    /* mobile theme btn */
+    #themeBtnMobile { display: none; }
+    @media (max-width: 900px) { #themeBtnMobile { display: flex !important; } }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" onclick="toggleMenu()">✕</span>
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="web-development.html" onclick="toggleMenu()" class="active">Web Development</a>
+  <a href="seo.html" onclick="toggleMenu()">Technical SEO</a>
+  <a href="qa-testing.html" onclick="toggleMenu()">QA Testing</a>
+  <a href="index.html#work" onclick="toggleMenu()">Portfolio</a>
+  <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="sachin-raut-logo.svg" alt="Sachin Raut" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="web-development.html" class="active">Web Development</a></li>
+        <li><a href="seo.html">Technical SEO</a></li>
+        <li><a href="qa-testing.html">QA Testing</a></li>
+        <li><a href="index.html#work">Portfolio</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle theme">🌙</button>
+        <a href="index.html#contact" class="btn btn-primary" style="padding:10px 22px;font-size:13px;">Get Free Audit ✦</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtnMobile" style="display:none;" aria-label="Toggle theme">🌙</button>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> → <a href="index.html#services">Services</a> → Web Development</div>
+    <div class="page-hero-tag">🖥️ Website Development</div>
+    <h1>Websites Built to<br/><span class="gradient-text">Perform & Convert</span></h1>
+    <p>From custom WordPress to full-stack Next.js — every website is engineered for speed, SEO, and real business results. No templates, no shortcuts, 100% code ownership.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px;">
+      <a href="index.html#contact" class="btn btn-primary">Start Your Project →</a>
+      <a href="index.html#work" class="btn btn-outline">View Portfolio</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">95+</div><div class="hero-stat-label">PageSpeed Score Guaranteed</div></div>
+      <div><div class="hero-stat-num">4 wks</div><div class="hero-stat-label">Avg. Launch Timeline</div></div>
+      <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Code Ownership</div></div>
+      <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Websites Delivered</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="content-section">
+  <div class="container">
+    <div data-aos="fade-up" style="max-width:620px;">
+      <div class="section-label">My Process</div>
+      <h2 class="section-title">How I Build Your <span class="gradient-text">Website</span></h2>
+      <p class="section-desc">A clear 5-step process — so you always know what's happening and when. No surprises, no delays.</p>
+    </div>
+
+    <div class="webdev-grid">
+      <!-- Steps -->
+      <div>
+        <div class="webdev-steps">
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="0">
+            <div class="webdev-step-icon">🎯</div>
+            <div>
+              <h4>Discovery & Requirements</h4>
+              <p>Deep-dive into your business goals, target audience, competitors, and technical requirements. Every build starts with a clear blueprint.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="80">
+            <div class="webdev-step-icon">🎨</div>
+            <div>
+              <h4>UI/UX Design & Wireframing</h4>
+              <p>Custom wireframes and high-fidelity mockups tailored to your brand — reviewed and approved by you before a single line of code is written.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="160">
+            <div class="webdev-step-icon">⚙️</div>
+            <div>
+              <h4>Development with Live Staging</h4>
+              <p>Clean, scalable code with a live staging URL from day one. Regular progress updates via email so you're never in the dark.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="240">
+            <div class="webdev-step-icon">🔐</div>
+            <div>
+              <h4>SEO, Security & Performance Baking</h4>
+              <p>Technical SEO, schema markup, SSL, security hardening, and Core Web Vitals optimization built into every project — not added later.</p>
+            </div>
+          </div>
+          <div class="webdev-step" data-aos="fade-right" data-aos-delay="320">
+            <div class="webdev-step-icon">🚀</div>
+            <div>
+              <h4>Launch + CMS Handover</h4>
+              <p>Full deployment on your chosen platform, Google tools setup, CMS training, and post-launch support. You own 100% of the code.</p>
+            </div>
+          </div>
+        </div>
+        <div class="webdev-perks" data-aos="fade-up" data-aos-delay="200">
+          <div class="webdev-perk">
+            <div class="icon">⚡</div>
+            <strong>Lightning Fast</strong>
+            <p>95+ PageSpeed guaranteed</p>
+          </div>
+          <div class="webdev-perk">
+            <div class="icon">📱</div>
+            <strong>Mobile-First</strong>
+            <p>Pixel-perfect on all devices</p>
+          </div>
+          <div class="webdev-perk">
+            <div class="icon">🔒</div>
+            <strong>100% Ownership</strong>
+            <p>Code, design & all assets</p>
+          </div>
+          <div class="webdev-perk">
+            <div class="icon">🛡️</div>
+            <strong>SSL + Security</strong>
+            <p>Hardened & GDPR ready</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Card -->
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div class="webdev-visual-card">
+          <div class="webdev-visual-header">
+            <div class="browser-dot" style="background:#ef4444;"></div>
+            <div class="browser-dot" style="background:#f59e0b;"></div>
+            <div class="browser-dot" style="background:#10b981;"></div>
+            <div class="browser-bar">🔒 yourwebsite.com</div>
+          </div>
+          <div style="font-size:12px;color:var(--purple2);font-weight:700;letter-spacing:2px;margin-bottom:16px;">DELIVERY SNAPSHOT</div>
+          <div class="webdev-stat-row">
+            <div class="webdev-stat"><div class="val">95+</div><div class="key">PageSpeed Score</div></div>
+            <div class="webdev-stat"><div class="val">4 wks</div><div class="key">Avg. Launch Time</div></div>
+            <div class="webdev-stat"><div class="val">100%</div><div class="key">Code Ownership</div></div>
+            <div class="webdev-stat"><div class="val">99.9%</div><div class="key">Uptime SLA</div></div>
+          </div>
+          <div class="webdev-feature-list">
+            <div class="webdev-feature"><span class="check">✦</span> Custom theme — no page-builder bloat</div>
+            <div class="webdev-feature"><span class="check">✦</span> Headless CMS — edit content without code</div>
+            <div class="webdev-feature"><span class="check">✦</span> WooCommerce / API integrations</div>
+            <div class="webdev-feature"><span class="check">✦</span> Cloudflare CDN + OpenLiteSpeed VPS</div>
+            <div class="webdev-feature"><span class="check">✦</span> Schema markup & XML sitemap baked in</div>
+            <div class="webdev-feature"><span class="check">✦</span> Analytics + Search Console configured</div>
+            <div class="webdev-feature"><span class="check">✦</span> 1–6 months post-launch support included</div>
+          </div>
+          <div style="margin-top:20px;padding:14px;border-radius:10px;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(6,182,212,0.05));border:1px solid rgba(124,58,237,0.2);font-size:13px;color:var(--muted);">
+            <strong style="color:var(--text);">🎁 Free with every website:</strong> Lighthouse audit, Core Web Vitals report, SEO baseline, and a free performance check at 30 days post-launch.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<div class="tech-section">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Built With Modern <span class="gradient-text">Technologies</span></h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="0"><div class="icon">⚛️</div><div class="name">React / Next.js</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="40"><div class="icon">📝</div><div class="name">WordPress</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="80"><div class="icon">🎨</div><div class="name">Tailwind CSS</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="120"><div class="icon">🅱️</div><div class="name">Bootstrap</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="160"><div class="icon">🌐</div><div class="name">HTML5</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="200"><div class="icon">🎨</div><div class="name">CSS3</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="240"><div class="icon">🐘</div><div class="name">PHP</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="280"><div class="icon">🟢</div><div class="name">Node.js</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="320"><div class="icon">🧩</div><div class="name">Strapi CMS</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="360"><div class="icon">☁️</div><div class="name">Cloudflare</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="400"><div class="icon">▲</div><div class="name">Vercel</div></div>
+      <div class="tech-card" data-aos="zoom-in" data-aos-delay="440"><div class="icon">🗄️</div><div class="name">MySQL</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box" data-aos="fade-up">
+      <div class="section-label" style="text-align:center;justify-content:center;display:flex;">Ready to Build?</div>
+      <h2>Let's Create Your<br/><span class="gradient-text">Dream Website</span></h2>
+      <p>Tell me about your project and get a free consultation + Lighthouse audit within 24 hours. No commitments, no pressure.</p>
+      <div class="cta-btns">
+        <a href="index.html#contact" class="btn btn-primary">Start Your Project →</a>
+        <a href="index.html#work" class="btn btn-outline">See My Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div style="margin-bottom:18px;"><img src="sachin-raut-logo.svg" alt="Sachin Raut" style="height:48px;width:auto;" /></div>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="web-development.html">Web Dev</a>
+      <a href="seo.html">SEO</a>
+      <a href="qa-testing.html">QA Testing</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms</a>
+    </div>
+    <p>© 2026 Sachin Raut · Mumbai, India · All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic', offset: 60 });
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+const THEME_KEY = 'sr-theme';
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  const icon = t === 'light' ? '☀️' : '🌙';
+  ['themeBtn','themeBtnMobile'].forEach(id => { const b = document.getElementById(id); if(b) b.textContent = icon; });
+  localStorage.setItem(THEME_KEY, t);
+}
+function toggleTheme() { applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+
+/* ── PARTICLE CANVAS ── */
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', ()=>{ resize(); init(); });
+  function rand(a,b){ return Math.random()*(b-a)+a; }
+  function init(){
+    pts = [];
+    const n = Math.max(30, Math.floor((W*H)/22000));
+    const cols = ['#7c3aed','#a855f7','#06b6d4','#22d3ee'];
+    for(let i=0;i<n;i++) pts.push({ x:rand(0,W), y:rand(0,H), vx:rand(-0.28,0.28), vy:rand(-0.28,0.28), r:rand(0.8,2.2), a:rand(0.25,0.65), c:cols[Math.floor(Math.random()*cols.length)] });
+  }
+  init();
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const dark = document.documentElement.getAttribute('data-theme') !== 'light';
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.save(); ctx.globalAlpha = dark ? p.a : p.a*0.85;
+      ctx.fillStyle = dark ? p.c : (p.c==='#22d3ee'?'#0891b2':p.c==='#06b6d4'?'#0e7490':'#6d28d9');
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); ctx.restore();
+    });
+    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<110){ ctx.save(); ctx.globalAlpha=(1-d/110)*(dark?0.14:0.18); ctx.strokeStyle='#7c3aed'; ctx.lineWidth=0.6; ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); ctx.restore(); }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+<canvas id="bg-canvas"></canvas>
+</body>
+</html>

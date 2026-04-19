@@ -119,7 +119,7 @@
       font-size: clamp(32px, 5vw, 52px);
       font-weight: 800; margin-bottom: 16px;
     }
-    .section-desc { color: var(--muted); font-size: 18px; max-width: 600px; }
+    .section-desc { color: var(--muted); font-size: 18px; }
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -281,7 +281,7 @@
       opacity: 0.8;
     }
     html[data-theme="light"] #particles-canvas {
-      opacity: 0.15;
+      opacity: 0.4;
     }
     html[data-theme="light"] .sticky-btn.call,
     html[data-theme="light"] .sticky-btn.mail {
@@ -433,18 +433,112 @@
     /* ─── SERVICES ─────────────────────────────────────────── */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px; margin-top: 60px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 60px;
     }
-    .service-card { cursor: default; }
-    .service-icon {
-      width: 56px; height: 56px; border-radius: 14px;
+    .service-card {
+      cursor: default;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 40px 28px 32px;
+      text-align: center;
+      transition: all .35s ease;
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 18px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity .35s ease;
+      z-index: 0;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,58,237,0.5);
+      box-shadow: 0 20px 50px rgba(124,58,237,0.15);
+    }
+    .service-card:hover::after { opacity: 0.05; }
+    .service-card > * { position: relative; z-index: 1; }
+    .svc-icon-wrap {
+      width: 80px; height: 80px;
+      margin: 0 auto 24px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 20px;
+      position: relative;
     }
-    .service-card h3 { font-size: 20px; margin-bottom: 10px; }
-    .service-card p { color: var(--muted); font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .svc-icon-wrap svg {
+      width: 64px; height: 64px;
+      transition: transform .35s ease;
+    }
+    .service-card:hover .svc-icon-wrap svg { transform: scale(1.1); }
+    .service-card h3 {
+      font-size: 17px; font-weight: 700;
+      line-height: 1.4; color: var(--text);
+    }
+    .service-card h3 .accent {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    html[data-theme="light"] .service-card { background: rgba(255,255,255,0.75); }
+
+    /* ─── WHAT I PROVIDE ───────────────────────────────────── */
+    .provide-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .provide-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+    .provide-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 20px 24px;
+      text-align: center;
+      transition: all .3s ease;
+      position: relative; overflow: hidden;
+    }
+    .provide-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .provide-card:hover { transform: translateY(-5px); border-color: rgba(124,58,237,0.35); box-shadow: 0 16px 40px rgba(124,58,237,0.12); }
+    .provide-card:hover::before { opacity: 1; }
+    .provide-icon {
+      width: 64px; height: 64px;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .provide-icon svg { width: 52px; height: 52px; }
+    .provide-card p {
+      font-size: 14px; font-weight: 600;
+      color: var(--text); line-height: 1.4;
+    }
+    /* Category pill inside card */
+    .provide-cat {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px; border-radius: 99px;
+      margin-bottom: 12px;
+    }
+    .provide-cat.web  { background: rgba(124,58,237,0.12); color: var(--purple2); }
+    .provide-cat.seo  { background: rgba(6,182,212,0.12);  color: var(--cyan2); }
+    .provide-cat.qa   { background: rgba(16,185,129,0.12); color: var(--green); }
+    html[data-theme="light"] .provide-card { background: rgba(255,255,255,0.8); }
+    /* Responsive */
+    @media (max-width: 900px)  { .provide-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px)  { .provide-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .provide-card { padding: 24px 14px 18px; } }
+    @media (max-width: 400px)  { .provide-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+
     .tag {
       padding: 4px 12px; border-radius: 99px;
       font-size: 12px; font-weight: 500;
@@ -461,10 +555,6 @@
       background: rgba(16,185,129,0.1);
       color: var(--green);
       border-color: rgba(16,185,129,0.2);
-    }
-    .service-highlight {
-      border-color: rgba(124,58,237,0.3) !important;
-      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.04)) !important;
     }
 
     /* ─── WEB DEV SECTION ─────────────────────────────────── */
@@ -778,11 +868,91 @@
       border: 1px solid rgba(124,58,237,0.2);
     }
 
-    /* ─── PORTFOLIO ────────────────────────────────────────── */
-    .portfolio-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px,1fr));
-      gap: 28px; margin-top: 60px;
+    /* ─── INDUSTRIES ───────────────────────────────────────── */
+    .industries-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .industries-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 16px; margin-top: 56px;
     }
+    .industry-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 20px;
+      transition: all .3s ease; position: relative; overflow: hidden; cursor: default;
+    }
+    .industry-card::after { content:''; position:absolute; inset:0; border-radius:16px; background:var(--grad); opacity:0; transition:opacity .3s; z-index:0; }
+    .industry-card:hover { transform: translateY(-5px); border-color: rgba(124,58,237,0.4); box-shadow: 0 16px 40px rgba(124,58,237,0.12); }
+    .industry-card:hover::after { opacity:0.04; }
+    .industry-card > * { position:relative; z-index:1; }
+    .industry-icon { font-size:36px; margin-bottom:14px; display:block; }
+    .industry-card h4 { font-size:15px; font-weight:700; margin-bottom:8px; color:var(--text); }
+    .industry-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+    html[data-theme="light"] .industry-card { background:rgba(255,255,255,0.8); }
+    @media(max-width:900px)  { .industries-grid { grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:640px)  { .industries-grid { grid-template-columns:repeat(2,1fr); gap:12px; } .industry-card { padding:18px 14px; } }
+
+    /* ─── ABOUT US ─────────────────────────────────────────── */
+    .about-section { position:relative; z-index:1; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:60px; }
+    .about-tag { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:99px; font-size:11px; font-weight:700; letter-spacing:1px; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.25); color:var(--purple2); margin-bottom:18px; }
+    .about-text h2 { font-size:clamp(28px,4vw,40px); font-weight:800; margin-bottom:18px; }
+    .about-text p { color:var(--muted); font-size:15px; line-height:1.85; margin-bottom:16px; }
+    .about-highlights { display:flex; flex-direction:column; gap:12px; margin-top:24px; }
+    .about-highlight { display:flex; align-items:center; gap:12px; font-size:14px; font-weight:500; }
+    .about-highlight-dot { width:8px; height:8px; border-radius:50%; background:var(--grad); flex-shrink:0; }
+    .about-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .about-stat-card { padding:28px 24px; border-radius:18px; background:var(--bg2); border:1px solid var(--border); text-align:center; transition:all .3s; }
+    .about-stat-card:hover { border-color:rgba(124,58,237,0.4); transform:translateY(-4px); box-shadow:0 12px 30px rgba(124,58,237,0.1); }
+    .about-stat-card .num { font-size:36px; font-weight:900; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .about-stat-card .lbl { font-size:13px; color:var(--muted); margin-top:6px; line-height:1.4; }
+    .about-avatar-box { margin-bottom:20px; padding:28px; border-radius:20px; background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(6,182,212,0.04)); border:1px solid rgba(124,58,237,0.2); display:flex; align-items:center; gap:18px; }
+    .about-avatar { width:72px; height:72px; border-radius:50%; background:var(--grad); display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:900; color:#fff; flex-shrink:0; }
+    html[data-theme="light"] .about-stat-card { background:rgba(255,255,255,0.8); }
+    @media(max-width:900px) { .about-grid { grid-template-columns:1fr; gap:48px; } }
+    @media(max-width:600px) { .about-stats-grid { grid-template-columns:1fr 1fr; } }
+
+    /* ─── WHY CHOOSE US ────────────────────────────────────── */
+    .why-section { background:var(--bg2); border-top:1px solid var(--border); }
+    .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
+    .why-card { padding:32px 28px; border-radius:18px; background:var(--bg); border:1px solid var(--border); transition:all .35s; position:relative; overflow:hidden; }
+    .why-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad); opacity:0; transition:opacity .35s; }
+    .why-card:hover { transform:translateY(-6px); border-color:rgba(124,58,237,0.4); box-shadow:0 20px 50px rgba(124,58,237,0.12); }
+    .why-card:hover::before { opacity:1; }
+    .why-icon { width:56px; height:56px; border-radius:14px; background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,182,212,0.1)); display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:20px; }
+    .why-card h4 { font-size:17px; font-weight:700; margin-bottom:10px; }
+    .why-card p { font-size:14px; color:var(--muted); line-height:1.7; }
+    html[data-theme="light"] .why-card { background:rgba(255,255,255,0.8); }
+    @media(max-width:900px) { .why-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px) { .why-grid { grid-template-columns:1fr; } }
+
+    /* ─── PORTFOLIO (GALLERY) ───────────────────────────────── */
+    .portfolio-gallery { margin-top:56px; }
+    .gallery-row { display:grid; gap:14px; margin-bottom:14px; }
+    .gallery-row-1 { grid-template-columns:repeat(4,1fr); }
+    .gallery-row-2 { grid-template-columns:repeat(3,1fr); }
+    .gallery-item {
+      border-radius:12px; overflow:hidden; position:relative;
+      background:var(--bg2); border:1px solid var(--border);
+      transition:all .3s ease; cursor:pointer;
+      aspect-ratio: 4/3;
+    }
+    .gallery-item:hover { transform:scale(1.02); border-color:rgba(124,58,237,0.5); box-shadow:0 12px 40px rgba(124,58,237,0.2); z-index:2; }
+    .gallery-item:hover .gallery-overlay { opacity:1; }
+    /* Browser bar inside each card */
+    .browser-preview { width:100%; height:100%; display:flex; flex-direction:column; }
+    .bp-bar { height:24px; background:rgba(0,0,0,0.3); display:flex; align-items:center; gap:5px; padding:0 10px; flex-shrink:0; }
+    .bp-dot { width:7px; height:7px; border-radius:50%; }
+    .bp-url { flex:1; height:12px; background:rgba(255,255,255,0.1); border-radius:4px; margin-left:6px; }
+    .bp-content { flex:1; display:flex; align-items:center; justify-content:center; position:relative; }
+    .bp-emoji { font-size:36px; opacity:0.6; }
+    .gallery-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.75); display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transition:opacity .3s; padding:16px; text-align:center; }
+    .gallery-overlay h4 { font-size:14px; font-weight:700; color:#fff; margin-bottom:6px; }
+    .gallery-overlay p { font-size:12px; color:rgba(255,255,255,0.7); }
+    .gallery-overlay .go-tag { display:inline-block; margin-top:10px; padding:4px 12px; border-radius:99px; background:var(--grad); font-size:11px; font-weight:700; color:#fff; }
+    html[data-theme="light"] .gallery-item { background:rgba(255,255,255,0.6); }
+    html[data-theme="light"] .bp-bar { background:rgba(0,0,0,0.08); }
+    @media(max-width:900px) { .gallery-row-1 { grid-template-columns:repeat(3,1fr); } .gallery-row-2 { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px) { .gallery-row-1,.gallery-row-2 { grid-template-columns:repeat(2,1fr); } }
+
     .portfolio-card { overflow: hidden; }
     .portfolio-thumb {
       height: 200px; border-radius: 12px; margin-bottom: 20px;
@@ -790,17 +960,11 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 48px;
     }
-    .portfolio-cat {
-      position: absolute; top: 12px; right: 12px;
-    }
+    .portfolio-cat { position: absolute; top: 12px; right: 12px; }
     .portfolio-card h3 { font-size: 20px; margin-bottom: 8px; }
     .portfolio-card p { color: var(--muted); font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
     .metrics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-    .metric-pill {
-      text-align: center; padding: 10px 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border); border-radius: 10px;
-    }
+    .metric-pill { text-align: center; padding: 10px 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; }
     .metric-pill .val { font-size: 18px; font-weight: 800; color: var(--cyan2); }
     .metric-pill .key { font-size: 10px; color: var(--muted); }
 
@@ -1299,9 +1463,9 @@
 <div class="mobile-menu" id="mobileMenu">
   <span class="mobile-close" onclick="toggleMenu()">✕</span>
   <a href="#services" onclick="toggleMenu()">Services</a>
-  <a href="#webdev" onclick="toggleMenu()">Web Development</a>
-  <a href="#seo" onclick="toggleMenu()">Technical SEO</a>
-  <a href="#qa" onclick="toggleMenu()">QA Testing</a>
+  <a href="web-development.html" onclick="toggleMenu()">Web Development</a>
+  <a href="seo.html" onclick="toggleMenu()">Technical SEO</a>
+  <a href="qa-testing.html" onclick="toggleMenu()">QA Testing</a>
   <a href="#work" onclick="toggleMenu()">Portfolio</a>
   <a href="#process" onclick="toggleMenu()">Process</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
@@ -1317,9 +1481,9 @@
       </a>
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="#webdev">Web Dev</a></li>
-        <li><a href="#seo">SEO</a></li>
-        <li><a href="#qa">QA Testing</a></li>
+        <li><a href="web-development.html">Web Dev</a></li>
+        <li><a href="seo.html">SEO</a></li>
+        <li><a href="qa-testing.html">QA Testing</a></li>
         <li><a href="#work">Portfolio</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
@@ -1519,67 +1683,392 @@
       <p class="section-desc">Every service is laser-focused on one goal — helping your business get more leads, rank higher, and run smoother.</p>
     </div>
     <div class="services-grid">
-      <div class="card service-card" data-aos="fade-up" data-aos-delay="50">
-        <div class="service-icon" style="background: linear-gradient(135deg,#7c3aed22,#a855f733);">🎨</div>
-        <h3>Custom WordPress Development</h3>
-        <p>Expert WordPress development with custom themes, secure plugins, and lightning-fast hosting on OpenLiteSpeed VPS — built to perform.</p>
-        <div class="service-tags">
-          <span class="tag">Custom Themes</span>
-          <span class="tag">WooCommerce</span>
-          <span class="tag">VPS Hosting</span>
-          <span class="tag">Security</span>
+
+      <!-- 1. New Website Design & Development -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <rect x="4" y="10" width="56" height="36" rx="4"/>
+            <line x1="4" y1="20" x2="60" y2="20"/>
+            <circle cx="11" cy="15" r="2" fill="#a855f7" stroke="none"/>
+            <circle cx="19" cy="15" r="2" fill="#a855f7" stroke="none"/>
+            <circle cx="27" cy="15" r="2" fill="#06b6d4" stroke="none"/>
+            <polyline points="16,35 24,27 30,33 38,24 48,33"/>
+            <line x1="22" y1="54" x2="42" y2="54"/>
+            <line x1="32" y1="46" x2="32" y2="54"/>
+          </svg>
         </div>
+        <h3><span class="accent">New Website</span> Design & Development</h3>
       </div>
-      <div class="card service-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-icon" style="background: linear-gradient(135deg,#06b6d422,#22d3ee33);">⚡</div>
-        <h3>Headless CMS & Next.js</h3>
-        <p>Future-proof web solutions using Strapi Headless CMS and Next.js — perfect for scalable, SEO-friendly modern web applications.</p>
-        <div class="service-tags">
-          <span class="tag cyan">Next.js / React</span>
-          <span class="tag cyan">Strapi CMS</span>
-          <span class="tag cyan">API Dev</span>
-          <span class="tag cyan">PWA</span>
+
+      <!-- 2. E-Commerce Development -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <path d="M6 8h8l6 28h28l6-20H18"/>
+            <circle cx="26" cy="52" r="4"/>
+            <circle cx="44" cy="52" r="4"/>
+            <path d="M22 24h20M22 32h14"/>
+          </svg>
         </div>
+        <h3><span class="accent">E-Commerce</span> Development</h3>
       </div>
-      <div class="card service-card" data-aos="fade-up" data-aos-delay="150">
-        <div class="service-icon" style="background: linear-gradient(135deg,#f59e0b22,#f59e0b33);">📈</div>
-        <h3>Technical SEO & Speed Fixes</h3>
-        <p>Guaranteed Core Web Vitals optimization — fixing INP, CLS, and LCP issues to boost your Google rankings and organic traffic.</p>
-        <div class="service-tags">
-          <span class="tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;border-color:rgba(245,158,11,0.2);">Core Web Vitals</span>
-          <span class="tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;border-color:rgba(245,158,11,0.2);">Schema Markup</span>
-          <span class="tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;border-color:rgba(245,158,11,0.2);">Google Ads</span>
+
+      <!-- 3. Re-Design Of Existing Website -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg3" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <rect x="6" y="10" width="52" height="38" rx="4"/>
+            <line x1="6" y1="20" x2="58" y2="20"/>
+            <path d="M18 34 l8-8 4 4 8-8" />
+            <path d="M44 10 l8 8-20 20-10 2 2-10z" stroke="#a855f7"/>
+            <line x1="42" y1="12" x2="50" y2="20"/>
+          </svg>
         </div>
+        <h3><span class="accent">Re-Design</span> Of Existing Website</h3>
       </div>
-      <div class="card service-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="service-icon" style="background: linear-gradient(135deg,#10b98122,#10b98133);">🛠️</div>
-        <h3>Custom CRM & SaaS Software</h3>
-        <p>Tailor-made software solutions to automate business processes. Secure SaaS platforms, CRMs, and internal tools built for scale.</p>
-        <div class="service-tags">
-          <span class="tag green">Custom CRM</span>
-          <span class="tag green">SaaS Build</span>
-          <span class="tag green">Automation</span>
-          <span class="tag green">Database Design</span>
+
+      <!-- 4. Content Management System -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg4" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="8" width="48" height="14" rx="3"/>
+            <rect x="8" y="26" width="48" height="14" rx="3"/>
+            <rect x="8" y="44" width="48" height="12" rx="3"/>
+            <line x1="16" y1="15" x2="36" y2="15"/>
+            <line x1="16" y1="33" x2="30" y2="33"/>
+            <line x1="16" y1="50" x2="26" y2="50"/>
+            <circle cx="48" cy="15" r="3" fill="#a855f7" stroke="none"/>
+            <circle cx="48" cy="33" r="3" fill="#06b6d4" stroke="none"/>
+          </svg>
         </div>
+        <h3>Content <span class="accent">Management</span> System</h3>
       </div>
-      <div class="card service-card service-highlight" data-aos="fade-up" data-aos-delay="250" style="grid-column: span 1;">
-        <div class="service-icon" style="background: linear-gradient(135deg,#7c3aed33,#06b6d422);">🔬</div>
-        <h3>Manual QA Testing & Bug Reports</h3>
-        <p>Professional manual testing service — I test your website or app thoroughly, document every bug with severity levels, and deliver a complete, professional bug report document.</p>
-        <div class="service-tags">
-          <span class="tag">Functional Testing</span>
-          <span class="tag cyan">UI/UX Testing</span>
-          <span class="tag green">Bug Document</span>
-          <span class="tag">Cross-Browser</span>
-          <span class="tag cyan">Regression</span>
+
+      <!-- 5. Maintenance & Support Service -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg5" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <path d="M44 10a14 14 0 0 1 4 22l-2 2-16 16-8-8 16-16 2-2A14 14 0 0 1 44 10z"/>
+            <line x1="10" y1="54" x2="24" y2="40"/>
+            <circle cx="14" cy="50" r="4"/>
+            <line x1="40" y1="16" x2="48" y2="24"/>
+          </svg>
         </div>
+        <h3><span class="accent">Maintenance</span> & Support Service</h3>
       </div>
+
+      <!-- 6. Technical SEO Optimization -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg6" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <circle cx="28" cy="28" r="18"/>
+            <line x1="41" y1="41" x2="57" y2="57"/>
+            <polyline points="18,34 24,26 30,31 38,20"/>
+            <line x1="20" y1="20" x2="36" y2="20"/>
+          </svg>
+        </div>
+        <h3><span class="accent">Technical SEO</span> Optimization</h3>
+      </div>
+
+      <!-- 7. Custom CRM & SaaS -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="350">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg7" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="32" cy="18" rx="18" ry="8"/>
+            <path d="M14 18v10c0 4.4 8.1 8 18 8s18-3.6 18-8V18"/>
+            <path d="M14 28v10c0 4.4 8.1 8 18 8s18-3.6 18-8V28"/>
+            <circle cx="46" cy="46" r="10" fill="var(--bg2)" stroke="url(#sg7)"/>
+            <polyline points="42,46 45,49 51,43"/>
+          </svg>
+        </div>
+        <h3><span class="accent">Custom CRM</span> & SaaS Solutions</h3>
+      </div>
+
+      <!-- 8. Manual QA Testing & Bug Reports -->
+      <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="svc-icon-wrap">
+          <svg viewBox="0 0 64 64" fill="none" stroke="url(#sg8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="sg8" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <rect x="12" y="8" width="40" height="48" rx="4"/>
+            <line x1="20" y1="20" x2="44" y2="20"/>
+            <line x1="20" y1="30" x2="44" y2="30"/>
+            <line x1="20" y1="40" x2="34" y2="40"/>
+            <polyline points="36,44 40,48 48,38" stroke="#10b981" stroke-width="2.5"/>
+            <circle cx="16" cy="20" r="2" fill="#a855f7" stroke="none"/>
+            <circle cx="16" cy="30" r="2" fill="#a855f7" stroke="none"/>
+            <circle cx="16" cy="40" r="2" fill="#06b6d4" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Manual <span class="accent">QA Testing</span> & Bug Reports</h3>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════════ WEBSITE DEVELOPMENT DEEP DIVE ═══════════ -->
-<section class="webdev-section" id="webdev">
+<!-- ═══════════ WHAT I PROVIDE ═══════════ -->
+<section class="provide-section" id="what-i-provide">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:right;">
+      <div class="section-label">What I Provide</div>
+      <h2 class="section-title">Everything You Need, <span class="gradient-text">Under One Roof</span></h2>
+      <p class="section-desc">From domain to deployment, audit to launch — every deliverable you need, handled professionally.</p>
+    </div>
+
+    <div class="provide-grid">
+
+      <!-- ── WEB DEVELOPMENT ── -->
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="50">
+        <span class="provide-cat web">Web Dev</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pw1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pw1" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <circle cx="26" cy="26" r="20"/>
+            <path d="M6 26h40M26 6a32 32 0 0 1 0 40M26 6a32 32 0 0 0 0 40"/>
+          </svg>
+        </div>
+        <p>Domain Registration</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="80">
+        <span class="provide-cat web">Web Dev</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pw2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pw2" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <rect x="6" y="10" width="40" height="8" rx="2"/>
+            <rect x="6" y="22" width="40" height="8" rx="2"/>
+            <rect x="6" y="34" width="40" height="8" rx="2"/>
+            <circle cx="42" cy="14" r="2" fill="#a855f7" stroke="none"/>
+            <circle cx="42" cy="26" r="2" fill="#06b6d4" stroke="none"/>
+          </svg>
+        </div>
+        <p>Website Hosting Setup</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="110">
+        <span class="provide-cat web">Web Dev</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pw3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pw3" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <rect x="4" y="8" width="30" height="22" rx="3"/>
+            <rect x="18" y="22" width="28" height="20" rx="3"/>
+            <path d="M34 8 l4 4-4 4"/>
+          </svg>
+        </div>
+        <p>Responsive & Mobile-Friendly</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="140">
+        <span class="provide-cat web">Web Dev</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pw4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pw4" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <rect x="6" y="6" width="40" height="40" rx="4"/>
+            <line x1="6" y1="18" x2="46" y2="18"/>
+            <line x1="22" y1="18" x2="22" y2="46"/>
+            <circle cx="14" cy="12" r="2" fill="#a855f7" stroke="none"/>
+          </svg>
+        </div>
+        <p>Business Email Accounts</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="170">
+        <span class="provide-cat web">Web Dev</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pw5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pw5" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <path d="M8 38 Q14 28 20 34 Q26 40 32 24 Q38 8 46 14"/>
+            <circle cx="12" cy="16" r="8"/>
+            <circle cx="40" cy="16" r="8"/>
+            <line x1="20" y1="16" x2="32" y2="16"/>
+          </svg>
+        </div>
+        <p>Social Media Integration</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="provide-cat web">Web Dev</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pw6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pw6" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <rect x="4" y="10" width="44" height="32" rx="3"/>
+            <path d="M4 20h44"/>
+            <rect x="12" y="28" width="12" height="8" rx="2"/>
+            <line x1="30" y1="30" x2="40" y2="30"/>
+            <line x1="30" y1="34" x2="38" y2="34"/>
+          </svg>
+        </div>
+        <p>Royalty Free Licensed Images</p>
+      </div>
+
+      <!-- ── SEO ── -->
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="230">
+        <span class="provide-cat seo">SEO</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#ps1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="ps1" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs>
+            <polyline points="6,42 16,30 24,36 34,22 44,28"/>
+            <circle cx="44" cy="28" r="4"/>
+            <line x1="6" y1="46" x2="46" y2="46"/>
+          </svg>
+        </div>
+        <p>Core Web Vitals Optimization</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="260">
+        <span class="provide-cat seo">SEO</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#ps2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="ps2" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs>
+            <path d="M26 6 l4 12h13l-10 8 4 12-11-8-11 8 4-12-10-8h13z"/>
+          </svg>
+        </div>
+        <p>Schema Markup & Structured Data</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="290">
+        <span class="provide-cat seo">SEO</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#ps3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="ps3" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs>
+            <circle cx="22" cy="22" r="14"/>
+            <line x1="32" y1="32" x2="46" y2="46"/>
+            <line x1="16" y1="22" x2="28" y2="22"/>
+            <line x1="22" y1="16" x2="22" y2="28"/>
+          </svg>
+        </div>
+        <p>Google Search Console Setup</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="320">
+        <span class="provide-cat seo">SEO</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#ps4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="ps4" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs>
+            <rect x="6" y="6" width="40" height="40" rx="4"/>
+            <line x1="14" y1="20" x2="38" y2="20"/>
+            <line x1="14" y1="28" x2="30" y2="28"/>
+            <line x1="14" y1="36" x2="24" y2="36"/>
+            <path d="M32 30 l4 4 8-8" stroke="#06b6d4" stroke-width="2.2"/>
+          </svg>
+        </div>
+        <p>On-Page SEO Optimization</p>
+      </div>
+
+      <!-- ── QA TESTING ── -->
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="350">
+        <span class="provide-cat qa">QA</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pq1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pq1" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <rect x="6" y="8" width="18" height="14" rx="2"/>
+            <rect x="28" y="8" width="18" height="14" rx="2"/>
+            <rect x="6" y="28" width="18" height="14" rx="2"/>
+            <rect x="28" y="28" width="18" height="14" rx="2"/>
+            <path d="M30 36 l4 4 8-8" stroke="#10b981" stroke-width="2.2"/>
+          </svg>
+        </div>
+        <p>Cross-Browser & Device Testing</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="380">
+        <span class="provide-cat qa">QA</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pq2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pq2" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <rect x="10" y="6" width="32" height="40" rx="3"/>
+            <line x1="18" y1="16" x2="34" y2="16"/>
+            <line x1="18" y1="24" x2="34" y2="24"/>
+            <line x1="18" y1="32" x2="28" y2="32"/>
+            <path d="M28 36 l4 4 8-8" stroke="#10b981" stroke-width="2.2"/>
+          </svg>
+        </div>
+        <p>Detailed Bug Report Document</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="410">
+        <span class="provide-cat qa">QA</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pq3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pq3" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <path d="M26 8 a18 18 0 1 1-18 18"/>
+            <polyline points="6 16 8 26 18 24"/>
+            <circle cx="26" cy="26" r="6" fill="none"/>
+            <path d="M22 26 l3 3 5-5" stroke="#10b981" stroke-width="2"/>
+          </svg>
+        </div>
+        <p>Regression & Functional Testing</p>
+      </div>
+
+      <div class="provide-card" data-aos="fade-up" data-aos-delay="440">
+        <span class="provide-cat qa">QA</span>
+        <div class="provide-icon">
+          <svg viewBox="0 0 52 52" fill="none" stroke="url(#pq4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="pq4" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
+            <rect x="4" y="8" width="44" height="28" rx="4"/>
+            <circle cx="26" cy="22" r="8"/>
+            <circle cx="26" cy="22" r="3" fill="#10b981" stroke="none"/>
+            <line x1="14" y1="42" x2="38" y2="42"/>
+            <line x1="26" y1="36" x2="26" y2="42"/>
+          </svg>
+        </div>
+        <p>UI/UX Experience Testing</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WEBSITE DEVELOPMENT DEEP DIVE (moved to web-development.html) ═══════════ -->
+<section class="webdev-section" id="webdev" style="display:none !important;">
   <div class="container">
     <div data-aos="fade-up" style="max-width:620px;">
       <div class="section-label">Website Development</div>
@@ -1684,8 +2173,8 @@
   </div>
 </section>
 
-<!-- ═══════════ TECHNICAL SEO DEEP DIVE ═══════════ -->
-<section class="seo-section" id="seo">
+<!-- ═══════════ TECHNICAL SEO DEEP DIVE (moved to seo.html) ═══════════ -->
+<section class="seo-section" id="seo" style="display:none !important;">
   <div class="container">
     <div data-aos="fade-up" style="text-align:center;max-width:620px;margin:0 auto;">
       <div class="section-label" style="color:var(--yellow);">Technical SEO</div>
@@ -1791,8 +2280,8 @@
   </div>
 </section>
 
-<!-- ═══════════ QA TESTING DEEP DIVE ═══════════ -->
-<section class="qa-section" id="qa">
+<!-- ═══════════ QA TESTING DEEP DIVE (moved to qa-testing.html) ═══════════ -->
+<section class="qa-section" id="qa" style="display:none !important;">
   <div class="container">
     <div data-aos="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
       <div class="section-label">QA & Testing</div>
@@ -1897,8 +2386,232 @@
   </div>
 </section>
 
+<!-- ═══════════ INDUSTRIES WE SERVE ═══════════ -->
+<section class="industries-section" id="industries">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;">
+      <div class="section-label">Industries</div>
+      <h2 class="section-title">Industries I <span class="gradient-text">Serve</span></h2>
+      <p class="section-desc" style="margin:0 auto;max-width:520px;">From real estate to fintech — I build tailored digital solutions for a wide range of industries across India and beyond.</p>
+    </div>
+    <div class="industries-grid">
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="40">
+        <span class="industry-icon">🏠</span>
+        <h4>Real Estate</h4>
+        <p>Property listing websites with search filters, inquiry forms, virtual tour integrations & trust-building design.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="80">
+        <span class="industry-icon">✈️</span>
+        <h4>Tour & Travels</h4>
+        <p>Booking-ready travel websites with destination showcases, itinerary builders & secure payment flows.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="120">
+        <span class="industry-icon">🎓</span>
+        <h4>Education</h4>
+        <p>Modern e-learning platforms, course portals, student dashboards & institute showcase websites.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="160">
+        <span class="industry-icon">🚗</span>
+        <h4>Transport & Logistics</h4>
+        <p>Fleet management platforms, booking systems & logistics dashboards with real-time tracking.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="industry-icon">📅</span>
+        <h4>Events & Ticketing</h4>
+        <p>Dynamic event websites with online ticketing, RSVP management & live countdown features.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="240">
+        <span class="industry-icon">🛒</span>
+        <h4>eCommerce</h4>
+        <p>High-converting online stores with secure payment gateways, inventory management & fast checkout.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="280">
+        <span class="industry-icon">❤️‍🩹</span>
+        <h4>Healthcare</h4>
+        <p>Appointment booking portals, patient info hubs & clinic websites built with trust & compliance in mind.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="320">
+        <span class="industry-icon">💰</span>
+        <h4>Finance & Fintech</h4>
+        <p>Secure, informative finance websites for banking, investment advisors & fintech startups.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="360">
+        <span class="industry-icon">🍽️</span>
+        <h4>Restaurant & Food</h4>
+        <p>Appetizing restaurant websites with digital menus, table reservations & online ordering systems.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="400">
+        <span class="industry-icon">⚡</span>
+        <h4>On-Demand Services</h4>
+        <p>Responsive on-demand platforms with real-time scheduling, tracking & customer management tools.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="440">
+        <span class="industry-icon">🛍️</span>
+        <h4>Grocery & Retail</h4>
+        <p>Smart grocery & retail websites with product catalogs, delivery tracking & seamless checkout flows.</p>
+      </div>
+
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="480" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(6,182,212,0.04));border-color:rgba(124,58,237,0.25);">
+        <span class="industry-icon">🤝</span>
+        <h4>Your Industry</h4>
+        <p>Don't see your niche? I build for any industry. Let's talk about your requirements and craft the perfect solution.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT US ═══════════ -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- LEFT: Text -->
+      <div data-aos="fade-right">
+        <div class="about-tag">👋 About Me</div>
+        <h2 class="section-title">The Developer Behind <span class="gradient-text">Your Growth</span></h2>
+        <p>I'm <strong style="color:var(--text);">Sachin Raut</strong>, a Mumbai-based Full-Stack Web Developer and QA Specialist with a passion for building websites that don't just look great — they perform, convert, and rank.</p>
+        <p>With hands-on experience across WordPress, Next.js, React, and modern CMS platforms, I've helped 15+ businesses across India establish a strong digital presence — from startups launching their first website to established brands looking to scale.</p>
+        <p>Every project I take on comes with a simple guarantee: clean code, fast performance, full ownership, and a developer who actually cares about your results.</p>
+        <div class="about-highlights">
+          <div class="about-highlight">
+            <div class="about-highlight-dot"></div>
+            <span>Based in Mumbai — available for projects across India & globally</span>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-dot"></div>
+            <span>Specialized in lead-generation & conversion-focused websites</span>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-dot"></div>
+            <span>Technical SEO & Core Web Vitals built into every project by default</span>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-dot"></div>
+            <span>Transparent pricing, milestone-based payments, no lock-in</span>
+          </div>
+        </div>
+        <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary" style="padding:12px 24px;font-size:14px;">Work With Me →</a>
+          <a href="#work" class="btn btn-outline" style="padding:12px 24px;font-size:14px;">View My Work</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Stats -->
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div class="about-avatar-box">
+          <div class="about-avatar">SR</div>
+          <div>
+            <div style="font-size:18px;font-weight:800;">Sachin Raut</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px;">Full-Stack Developer & QA Specialist</div>
+            <div style="font-size:12px;color:var(--purple2);margin-top:6px;font-weight:600;">📍 Mumbai, India · Available for Projects</div>
+          </div>
+        </div>
+        <div class="about-stats-grid">
+          <div class="about-stat-card" data-aos="zoom-in" data-aos-delay="150">
+            <div class="num">15+</div>
+            <div class="lbl">Businesses Served Across India</div>
+          </div>
+          <div class="about-stat-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="num">95+</div>
+            <div class="lbl">Average PageSpeed Score</div>
+          </div>
+          <div class="about-stat-card" data-aos="zoom-in" data-aos-delay="250">
+            <div class="num">4 wk</div>
+            <div class="lbl">Average Project Launch Time</div>
+          </div>
+          <div class="about-stat-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="num">100%</div>
+            <div class="lbl">Code Ownership on Delivery</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY CHOOSE US ═══════════ -->
+<section class="why-section" id="why">
+  <div class="container">
+    <div data-aos="fade-up" style="text-align:center;">
+      <div class="section-label">Why Me</div>
+      <h2 class="section-title">Why Clients Choose <span class="gradient-text">Sachin Raut</span></h2>
+      <p class="section-desc" style="margin:0 auto;max-width:520px;">Not just a developer — a growth partner who delivers results, not just deliverables.</p>
+    </div>
+    <div class="why-grid">
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="why-icon">⚡</div>
+        <h4>Speed That's Guaranteed</h4>
+        <p>Every website I build achieves 95+ PageSpeed score. Core Web Vitals, image optimization, and CDN setup are standard — not optional extras.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-icon">🔒</div>
+        <h4>100% Code Ownership</h4>
+        <p>You own everything — source code, design files, hosting credentials, and all assets. No lock-in, no recurring ownership fees. Ever.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="why-icon">📈</div>
+        <h4>SEO Built-In by Default</h4>
+        <p>Technical SEO, schema markup, sitemap, meta tags, and Google Search Console setup are included in every project — not sold separately.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="why-icon">💬</div>
+        <h4>Transparent Communication</h4>
+        <p>Daily/weekly updates, live staging access from day one, and clear milestone tracking. You'll always know exactly where your project stands.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="why-icon">🧪</div>
+        <h4>QA Tested Before Delivery</h4>
+        <p>Every website goes through cross-browser testing, mobile responsiveness checks, and functional testing before it reaches your hands.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="why-icon">🤝</div>
+        <h4>Post-Launch Support</h4>
+        <p>1 to 6 months of post-launch support included. Bug fixes, minor updates, and performance monitoring — I don't disappear after delivery.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="350">
+        <div class="why-icon">⏱️</div>
+        <h4>On-Time Delivery</h4>
+        <p>Structured milestones with realistic deadlines. No missed deadlines, no vague timelines — a clear project roadmap from day one.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="why-icon">💳</div>
+        <h4>Milestone-Based Payment</h4>
+        <p>30% upfront, 40% at design approval, 30% at final delivery. No large upfront payments — pay as you see real progress.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="450">
+        <div class="why-icon">🎯</div>
+        <h4>Results-Focused Approach</h4>
+        <p>I build websites for one goal — business growth. Lead generation, organic traffic, and conversions are always the north star of every decision.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ TECH STACK ═══════════ -->
-<section id="tech">
+<section id="tech" style="display:none !important;">
   <div class="container">
     <div data-aos="fade-up" style="text-align:center;">
       <div class="section-label">Tech Stack</div>
@@ -1960,7 +2673,7 @@
 </section>
 
 <!-- ═══════════ TESTIMONIALS ═══════════ -->
-<section class="testimonials-section" id="testimonials">
+<section class="testimonials-section" id="testimonials" style="display:none !important;">
   <div class="container">
     <div data-aos="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
       <div class="section-label">Client Reviews</div>
@@ -2029,53 +2742,191 @@
 <!-- ═══════════ PORTFOLIO ═══════════ -->
 <section id="work">
   <div class="container">
-    <div data-aos="fade-up">
+    <div data-aos="fade-up" style="text-align:center;">
       <div class="section-label">Recent Work</div>
-      <h2 class="section-title">Projects That <span class="gradient-text">Deliver Results</span></h2>
+      <h2 class="section-title">Our Recent <span class="gradient-text">Work</span></h2>
+      <p class="section-desc" style="margin:0 auto;max-width:480px;">A glimpse of websites built for real businesses — each one crafted for speed, SEO, and results.</p>
     </div>
-    <div class="portfolio-grid">
-      <div class="card portfolio-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#7c3aed22,#06b6d415);">
-          🏠
-          <span class="portfolio-cat badge">Interior Design</span>
+
+    <div class="portfolio-gallery" data-aos="fade-up" data-aos-delay="100">
+
+      <!-- Row 1: 4 items -->
+      <div class="gallery-row gallery-row-1">
+
+        <div class="gallery-item">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+            <div class="bp-content">
+              <div style="text-align:center;padding:16px;">
+                <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-1px;">INTERIOR</div>
+                <div style="width:40px;height:2px;background:var(--grad);margin:8px auto;border-radius:2px;"></div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:2px;">DESIGN STUDIO</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
+                  <div style="height:30px;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
+                  <div style="height:30px;background:rgba(255,255,255,0.04);border-radius:4px;"></div>
+                  <div style="height:30px;background:rgba(255,255,255,0.04);border-radius:4px;"></div>
+                  <div style="height:30px;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Aanvi Interior Website</h4>
+            <p>React · TypeScript · SEO</p>
+            <span class="go-tag">Interior Design</span>
+          </div>
         </div>
-        <h3>Aanvi Interior Website</h3>
-        <p>Modern, SEO-optimized corporate website for a turnkey interior execution firm, built to establish trust with high-profile corporate clients.</p>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;">React · shadcn/ui · TypeScript · SEO</div>
-        <div class="metrics-grid">
-          <div class="metric-pill"><div class="val">95+</div><div class="key">PageSpeed</div></div>
-          <div class="metric-pill"><div class="val">+180%</div><div class="key">Organic Traffic</div></div>
-          <div class="metric-pill"><div class="val">50+</div><div class="key">Keywords Ranked</div></div>
+
+        <div class="gallery-item">
+          <div class="browser-preview" style="background:linear-gradient(160deg,#0a0a0a,#1a1a2e,#16213e);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+            <div class="bp-content">
+              <div style="text-align:center;padding:20px;">
+                <div style="font-size:11px;color:#a855f7;letter-spacing:3px;font-weight:700;margin-bottom:6px;">SAAS PLATFORM</div>
+                <div style="font-size:20px;font-weight:800;color:#fff;">Garage<span style="color:#a855f7;">Pro</span></div>
+                <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
+                  <div style="height:6px;background:linear-gradient(90deg,#7c3aed,#a855f7);border-radius:3px;width:85%;"></div>
+                  <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;width:60%;"></div>
+                  <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;width:75%;"></div>
+                </div>
+                <div style="margin-top:12px;display:flex;gap:5px;justify-content:center;">
+                  <div style="padding:4px 10px;background:rgba(124,58,237,0.3);border-radius:4px;font-size:9px;color:#a855f7;font-weight:700;">LIVE</div>
+                  <div style="padding:4px 10px;background:rgba(255,255,255,0.05);border-radius:4px;font-size:9px;color:rgba(255,255,255,0.4);">ANALYTICS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Garage Management SaaS</h4>
+            <p>React · Node.js · MySQL</p>
+            <span class="go-tag">SaaS / Automotive</span>
+          </div>
         </div>
-      </div>
-      <div class="card portfolio-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#06b6d422,#10b98115);">
-          💻
-          <span class="portfolio-cat badge">Software Dev</span>
+
+        <div class="gallery-item">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#0d1117,#161b22,#1f2937);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+            <div class="bp-content">
+              <div style="text-align:center;padding:16px;">
+                <div style="font-size:10px;color:#06b6d4;letter-spacing:2px;font-weight:700;">PORTFOLIO</div>
+                <div style="font-size:18px;font-weight:900;color:#fff;margin:6px 0;">NextJS<span style="color:#06b6d4;">.</span>Dev</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:8px;">
+                  <div style="height:24px;background:rgba(6,182,212,0.15);border-radius:3px;"></div>
+                  <div style="height:24px;background:rgba(168,85,247,0.1);border-radius:3px;"></div>
+                  <div style="height:24px;background:rgba(6,182,212,0.08);border-radius:3px;"></div>
+                </div>
+                <div style="margin-top:6px;height:2px;width:50%;background:linear-gradient(90deg,#06b6d4,#7c3aed);border-radius:2px;margin-left:auto;margin-right:auto;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Headless CMS Portfolio</h4>
+            <p>Next.js · Strapi · PWA</p>
+            <span class="go-tag">Software Dev</span>
+          </div>
         </div>
-        <h3>Headless CMS Portfolio</h3>
-        <p>Next.js 16 + Strapi 5 headless CMS portfolio with blog, PWA, server-side rendering, and automated SEO — a modern web benchmark.</p>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;">Next.js · Strapi · PWA · Tailwind CSS</div>
-        <div class="metrics-grid">
-          <div class="metric-pill"><div class="val">98</div><div class="key">Lighthouse Score</div></div>
-          <div class="metric-pill"><div class="val">&lt;2s</div><div class="key">Build Time</div></div>
-          <div class="metric-pill"><div class="val">100%</div><div class="key">Core Web Vitals</div></div>
+
+        <div class="gallery-item">
+          <div class="browser-preview" style="background:linear-gradient(140deg,#0f2027,#203a43,#2c5364);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+            <div class="bp-content">
+              <div style="text-align:center;padding:20px;">
+                <div style="font-size:9px;color:#22d3ee;letter-spacing:3px;font-weight:700;">E-COMMERCE</div>
+                <div style="font-size:16px;font-weight:800;color:#fff;margin:8px 0;">Fashion<span style="color:#22d3ee;">Store</span></div>
+                <div style="display:flex;flex-direction:column;gap:4px;text-align:left;">
+                  <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.4);padding:5px;background:rgba(255,255,255,0.04);border-radius:4px;"><span>Product 01</span><span style="color:#22d3ee;">₹999</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.4);padding:5px;background:rgba(255,255,255,0.04);border-radius:4px;"><span>Product 02</span><span style="color:#22d3ee;">₹1,499</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Fashion eCommerce Store</h4>
+            <p>WooCommerce · WordPress</p>
+            <span class="go-tag">eCommerce</span>
+          </div>
         </div>
-      </div>
-      <div class="card portfolio-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#f59e0b22,#ef444415);">
-          🚗
-          <span class="portfolio-cat badge">SaaS / Automotive</span>
+
+      </div><!-- /row 1 -->
+
+      <!-- Row 2: 3 items (wider) -->
+      <div class="gallery-row gallery-row-2">
+
+        <div class="gallery-item">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#1a0533,#2d1b69,#1e3a5f);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+            <div class="bp-content">
+              <div style="padding:20px;width:100%;">
+                <div style="font-size:9px;color:#a855f7;letter-spacing:2px;font-weight:700;margin-bottom:10px;">REAL ESTATE</div>
+                <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:12px;">Premium Property Portal</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
+                  <div style="height:36px;background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(168,85,247,0.1));border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏠</div>
+                  <div style="height:36px;background:rgba(255,255,255,0.04);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏢</div>
+                  <div style="height:36px;background:rgba(255,255,255,0.04);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏗️</div>
+                </div>
+                <div style="margin-top:10px;height:6px;background:linear-gradient(90deg,#7c3aed,#a855f7,#06b6d4);border-radius:3px;width:70%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Real Estate Property Portal</h4>
+            <p>WordPress · Custom Theme · SEO</p>
+            <span class="go-tag">Real Estate</span>
+          </div>
         </div>
-        <h3>Garage Management SaaS</h3>
-        <p>Multi-tenant SaaS for automotive service centers with real-time analytics, automated WhatsApp reminders, digital billing, and PWA customer portal.</p>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:600;">React · Node.js · MySQL · Socket.IO</div>
-        <div class="metrics-grid">
-          <div class="metric-pill"><div class="val">-80%</div><div class="key">Admin Time</div></div>
-          <div class="metric-pill"><div class="val">+30%</div><div class="key">Retention</div></div>
-          <div class="metric-pill"><div class="val">100%</div><div class="key">Digitized</div></div>
+
+        <div class="gallery-item">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#003300,#004d1a,#006622);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+            <div class="bp-content">
+              <div style="text-align:center;padding:20px;">
+                <div style="font-size:9px;color:#10b981;letter-spacing:3px;font-weight:700;margin-bottom:8px;">RESTAURANT</div>
+                <div style="font-size:16px;font-weight:900;color:#fff;">Spice <span style="color:#10b981;">Garden</span></div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.4);margin:6px 0;">Fine Indian Dining · Mumbai</div>
+                <div style="display:flex;gap:5px;justify-content:center;margin-top:10px;">
+                  <div style="padding:5px 10px;background:rgba(16,185,129,0.2);border-radius:99px;font-size:9px;color:#10b981;font-weight:700;">MENU</div>
+                  <div style="padding:5px 10px;background:rgba(255,255,255,0.06);border-radius:99px;font-size:9px;color:rgba(255,255,255,0.5);">RESERVE</div>
+                  <div style="padding:5px 10px;background:rgba(255,255,255,0.06);border-radius:99px;font-size:9px;color:rgba(255,255,255,0.5);">ORDER</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Restaurant Website</h4>
+            <p>WordPress · Online Ordering · SEO</p>
+            <span class="go-tag">Food & Restaurant</span>
+          </div>
         </div>
-      </div>
+
+        <div class="gallery-item">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#1a1a2e,#f59e0b18,#16213e);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+            <div class="bp-content">
+              <div style="text-align:center;padding:20px;">
+                <div style="font-size:9px;color:#f59e0b;letter-spacing:3px;font-weight:700;margin-bottom:8px;">EDUCATION</div>
+                <div style="font-size:15px;font-weight:800;color:#fff;">LearnPro <span style="color:#f59e0b;">Academy</span></div>
+                <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+                  <div style="padding:6px;background:rgba(245,158,11,0.1);border-radius:5px;border:1px solid rgba(245,158,11,0.2);font-size:9px;color:rgba(255,255,255,0.6);">📚 Courses</div>
+                  <div style="padding:6px;background:rgba(255,255,255,0.04);border-radius:5px;font-size:9px;color:rgba(255,255,255,0.4);">👥 Students</div>
+                  <div style="padding:6px;background:rgba(255,255,255,0.04);border-radius:5px;font-size:9px;color:rgba(255,255,255,0.4);">📝 Exams</div>
+                  <div style="padding:6px;background:rgba(245,158,11,0.06);border-radius:5px;border:1px solid rgba(245,158,11,0.1);font-size:9px;color:rgba(255,255,255,0.5);">🏆 Results</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>E-Learning Platform</h4>
+            <p>React · Node.js · Custom LMS</p>
+            <span class="go-tag">Education</span>
+          </div>
+        </div>
+
+      </div><!-- /row 2 -->
+
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" data-aos="fade-up">
+      <a href="#contact" class="btn btn-primary">Start Your Project →</a>
     </div>
   </div>
 </section>
@@ -2557,87 +3408,99 @@ function triggerCounters() {
   const rect = hero.getBoundingClientRect();
   if (rect.top < window.innerHeight) {
     countersStarted = true;
-    document.querySelectorAll('[data-count]').forEach(el => {
-      const target = parseInt(el.dataset.count);
-      const suffix = el.textContent.includes('+') || target === 15 ? '+' :
-                     el.textContent.includes('%') ? '%' : '';
-      let start = 0;
-      const step = Math.ceil(target / 60);
+    document.querySelectorAll('.trust-num').forEach(el => {
+      const target = parseInt(el.getAttribute('data-count')) || 0;
+      let current = 0;
+      const step = Math.max(1, target / 70);
       const timer = setInterval(() => {
-        start = Math.min(start + step, target);
-        el.textContent = start + (target === 100 ? '%' : target === 15 || target === 98 ? '+' : '');
-        if (start >= target) clearInterval(timer);
-      }, 25);
+        current += step;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 16);
     });
   }
 }
 
 /* ── PARTICLE CANVAS ── */
-const canvas = document.getElementById('particles-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
+(function () {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-class Particle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 1.5 + 0.5;
-    this.speedX = (Math.random() - 0.5) * 0.3;
-    this.speedY = (Math.random() - 0.5) * 0.3;
-    this.opacity = Math.random() * 0.5 + 0.1;
-    this.color = Math.random() > 0.5 ? '#7c3aed' : '#06b6d4';
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
   }
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
-    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-  }
-  draw() {
-    ctx.save();
-    ctx.globalAlpha = this.opacity;
-    ctx.fillStyle = this.color;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-  }
-}
+  resize();
+  window.addEventListener('resize', () => { resize(); initParticles(); });
 
-for (let i = 0; i < 120; i++) particles.push(new Particle());
+  const COLORS = ['#7c3aed', '#a855f7', '#06b6d4', '#22d3ee'];
 
-function animateParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => { p.update(); p.draw(); });
-  // Draw connections
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if (dist < 100) {
-        ctx.save();
-        ctx.globalAlpha = (1 - dist/100) * 0.08;
-        ctx.strokeStyle = '#7c3aed';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-        ctx.restore();
-        }
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function initParticles() {
+    particles = [];
+    const count = Math.floor((W * H) / 18000);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x:  rand(0, W),
+        y:  rand(0, H),
+        vx: rand(-0.3, 0.3),
+        vy: rand(-0.3, 0.3),
+        r:  rand(1, 2.5),
+        a:  rand(0.2, 0.7),
+        c:  COLORS[Math.floor(Math.random() * COLORS.length)]
+      });
     }
   }
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
+  initParticles();
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W;
+      if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;
+      if (p.y > H) p.y = 0;
+      ctx.save();
+      ctx.globalAlpha = p.a;
+      ctx.fillStyle   = p.c;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+    // Draw connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.save();
+          ctx.globalAlpha = (1 - dist / 120) * 0.15;
+          ctx.strokeStyle = '#7c3aed';
+          ctx.lineWidth   = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
+
 </script>
 </body>
 </html>
