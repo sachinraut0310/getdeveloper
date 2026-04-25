@@ -151,16 +151,6 @@
   /* ── Build navbar HTML ── */
   const auditHref = h + '#contact';
   const navHtml = `
-<div class="mobile-menu" id="mobileMenu">
-  <span class="mobile-close" onclick="window.toggleMenu()">✕</span>
-  <a href="${h}#services"         onclick="window.toggleMenu()">Services</a>
-  <a href="web-development.html"  onclick="window.toggleMenu()">Web Development</a>
-  <a href="seo.html"              onclick="window.toggleMenu()">Technical SEO</a>
-  <a href="qa-testing.html"       onclick="window.toggleMenu()">QA Testing</a>
-  <a href="${h}#work"             onclick="window.toggleMenu()">Portfolio</a>
-  <a href="${h}#faq"              onclick="window.toggleMenu()">FAQ</a>
-  <a href="${h}#contact"          onclick="window.toggleMenu()">Contact</a>
-</div>
 
 <nav class="navbar" id="navbar">
   <div class="container">
@@ -168,23 +158,8 @@
       <a href="${h || 'index.html'}" class="nav-logo">
         <img src="sachin-raut-logo.svg" alt="Sachin Raut" />
       </a>
-      <ul class="nav-links">
-        <li><a href="${h}#services"${activeClass('')}>Services</a></li>
-        <li><a href="web-development.html"${activeClass('web-development.html')}>Web Dev</a></li>
-        <li><a href="seo.html"${activeClass('seo.html')}>SEO</a></li>
-        <li><a href="qa-testing.html"${activeClass('qa-testing.html')}>QA Testing</a></li>
-        <li><a href="${h}#work"${activeClass('')}>Portfolio</a></li>
-        <li><a href="${h}#faq"${activeClass('')}>FAQ</a></li>
-      </ul>
       <div class="nav-cta">
         <button class="theme-toggle" onclick="window.toggleTheme()" id="themeBtn" aria-label="Toggle theme">🌙</button>
-        <a href="${auditHref}" class="nav-audit-btn">Get Free Audit ✦</a>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <button class="theme-toggle" id="nb-mobile-theme" onclick="window.toggleTheme()" aria-label="Toggle theme" style="display:none;">🌙</button>
-        <div class="hamburger" onclick="window.toggleMenu()">
-          <span></span><span></span><span></span>
-        </div>
       </div>
     </div>
   </div>
@@ -229,18 +204,13 @@
 </div>
 <div class="nb-foot-links">
   <a href="index.html">Home</a>
-  <a href="web-development.html">Web Dev</a>
-  <a href="seo.html">SEO</a>
-  <a href="qa-testing.html">QA Testing</a>
-</div>
-<div class="nb-foot-links">
   <a href="privacy-policy.html">Privacy Policy</a>
   <a href="terms-and-conditions.html">Terms</a>
 </div>
 <div class="nb-foot-links">
   <a href="mailto:sachinraut0310@gmail.com">sachinraut0310@gmail.com</a>
 </div>
-
+<p>Address : 1/13 jay ambe seva sangh chawl, jay shankar nagar, bhandup west, mumbai-400078</p>
 <p>© 2026 Sachin Raut · Mumbai, India · All rights reserved.</p>`;
 
   /* ── Inject sticky buttons + footer AFTER DOM is ready ── */
