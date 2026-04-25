@@ -1061,6 +1061,39 @@
     textarea { resize: vertical; min-height: 110px; }
     select option { background: var(--bg); color: var(--text); }
 
+    /* ── Phone Input with Flag Prefix ── */
+    .phone-input-wrap {
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px; transition: all .3s; overflow: hidden;
+    }
+    .phone-input-wrap:focus-within {
+      border-color: var(--purple2);
+      background: rgba(124,58,237,0.05);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+    }
+    .phone-input-wrap.error { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+    .phone-prefix {
+      padding: 14px 12px 14px 16px; font-size: 14px; font-weight: 600;
+      color: var(--text); white-space: nowrap;
+      border-right: 1px solid var(--border); user-select: none;
+      background: rgba(255,255,255,0.03); flex-shrink: 0;
+    }
+    .phone-input-wrap input[type="tel"] {
+      border: none !important; background: transparent !important;
+      box-shadow: none !important; padding-left: 12px !important;
+      flex: 1; min-width: 0;
+    }
+    .phone-input-wrap input[type="tel"]:focus {
+      border: none !important; background: transparent !important; box-shadow: none !important;
+    }
+    .phone-error {
+      display: none; color: #ef4444; font-size: 12px; margin-top: 5px; font-weight: 500;
+    }
+    .phone-error.show { display: block; }
+    html[data-theme="light"] .phone-prefix { background: rgba(0,0,0,0.03); border-color: rgba(100,80,200,0.15); }
+
     /* Checkboxes */
     .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
     .checkbox-label {
@@ -1200,6 +1233,14 @@
 
     /* ── 768px: Tablet portrait / large phones ── */
     @media (max-width: 768px) {
+      /* Fix: body overflow-x:hidden doesn't clip position:fixed on mobile —
+         orb-1 (600px wide, right:-200px) was making page appear 200px wider */
+      html { overflow-x: hidden; }
+
+      /* Constrain orbs to not bleed beyond viewport edges */
+      .orb-1 { width: 320px; height: 320px; right: -80px; top: -100px; }
+      .orb-2 { width: 220px; height: 220px; left: -60px; }
+
       /* Navbar → hamburger */
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
@@ -1574,7 +1615,11 @@
               </div>
               <div class="form-group">
                 <label for="hphone">Phone *</label>
-                <input type="tel" id="hphone" placeholder="+91 98765 43210" required />
+                <div class="phone-input-wrap" id="hphone-wrap">
+                  <span class="phone-prefix">🇮🇳 +91</span>
+                  <input type="tel" id="hphone" placeholder="98765 43210" required maxlength="10" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10);clearPhoneError('hphone')" />
+                </div>
+                <div class="phone-error" id="hphone-error">Enter a valid 10-digit Indian mobile number</div>
               </div>
             </div>
             <div class="form-group">
@@ -3046,7 +3091,11 @@
               </div>
               <div class="form-group">
                 <label for="fphone">Phone Number *</label>
-                <input type="tel" id="fphone" placeholder="+91 98765 43210" required />
+                <div class="phone-input-wrap" id="fphone-wrap">
+                  <span class="phone-prefix">🇮🇳 +91</span>
+                  <input type="tel" id="fphone" placeholder="98765 43210" required maxlength="10" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10);clearPhoneError('fphone')" />
+                </div>
+                <div class="phone-error" id="fphone-error">Enter a valid 10-digit Indian mobile number</div>
               </div>
             </div>
             <div class="form-group">
@@ -3355,16 +3404,39 @@ function handleHeroCheckbox() {
   }
 }
 
+/* ── PHONE VALIDATION HELPERS ── */
+function validatePhone(id) {
+  const digits = document.getElementById(id).value.replace(/\D/g, '');
+  const wrap   = document.getElementById(id + '-wrap');
+  const err    = document.getElementById(id + '-error');
+  if (digits.length !== 10) {
+    wrap.classList.add('error');
+    err.classList.add('show');
+    document.getElementById(id).focus();
+    return false;
+  }
+  return true;
+}
+function clearPhoneError(id) {
+  const wrap = document.getElementById(id + '-wrap');
+  const err  = document.getElementById(id + '-error');
+  if (document.getElementById(id).value.length === 10) {
+    wrap.classList.remove('error');
+    err.classList.remove('show');
+  }
+}
+
 /* ── FORM SUBMIT (bottom contact form) ── */
 async function handleSubmit(e) {
   e.preventDefault();
+  if (!validatePhone('fphone')) return;
   const btn = e.target.querySelector('button[type="submit"]');
   const services = [...document.querySelectorAll('input[name="service"]:checked')]
                     .map(el => el.value);
   const formData = {
     name:    document.getElementById('fname').value.trim(),
     email:   document.getElementById('femail').value.trim(),
-    phone:   document.getElementById('fphone').value.trim(),
+    phone:   '+91' + document.getElementById('fphone').value.trim(),
     website: document.getElementById('fwebsite').value.trim(),
     message: document.getElementById('fmessage').value.trim(),
     services,
@@ -3380,13 +3452,14 @@ async function handleSubmit(e) {
 /* ── FORM SUBMIT (hero form) ── */
 async function handleHeroSubmit(e) {
   e.preventDefault();
+  if (!validatePhone('hphone')) return;
   const btn = e.target.querySelector('button[type="submit"]');
   const services = [...document.querySelectorAll('input[name="hservice"]:checked')]
                     .map(el => el.value);
   const formData = {
     name:    document.getElementById('hname').value.trim(),
     email:   document.getElementById('hemail').value.trim(),
-    phone:   document.getElementById('hphone').value.trim(),
+    phone:   '+91' + document.getElementById('hphone').value.trim(),
     website: document.getElementById('hwebsite')?.value.trim() || '',
     message: '',
     services,
