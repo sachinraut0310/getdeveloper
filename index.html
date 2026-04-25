@@ -1157,6 +1157,17 @@
       text-align: center; position: relative; z-index: 1;
     }
     footer p { color: var(--muted); font-size: 14px; }
+    .nb-footer-logo { margin-bottom: 18px; }
+    .nb-foot-links {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .nb-foot-links a { color: var(--muted); font-size: 13px; transition: color .2s; text-decoration: none; }
+    .nb-foot-links a:hover { color: var(--text); }
+    @media (max-width: 480px) {
+      .nb-foot-links { gap: 14px; }
+      .nb-foot-links a { font-size: 12px; }
+    }
 
     /* ─── MOBILE NAV ───────────────────────────────────────── */
     .mobile-menu {
@@ -3202,14 +3213,22 @@
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
   <div class="container">
-    <div style="margin-bottom:20px;display:flex;justify-content:center;">
-      <img src="sachin-raut-logo.svg" alt="Sachin Raut" style="height:52px;width:auto;" />
+    <div class="nb-footer-logo">
+      <img src="sachin-raut-logo.svg" alt="Sachin Raut" style="height:48px;width:auto;" />
     </div>
-    <p style="margin-bottom:8px;">
-      <a href="privacy-policy.html" style="color:var(--muted);margin:0 12px;font-size:13px;">Privacy Policy</a>
-      <a href="terms-and-conditions.html" style="color:var(--muted);margin:0 12px;font-size:13px;">Terms & Conditions</a>
-      <a href="mailto:sachinraut0310@gmail.com" style="color:var(--muted);margin:0 12px;font-size:13px;">sachinraut0310@gmail.com</a>
-    </p>
+    <div class="nb-foot-links">
+      <a href="index.html">Home</a>
+      <a href="web-development.html">Web Dev</a>
+      <a href="seo.html">SEO</a>
+      <a href="qa-testing.html">QA Testing</a>
+    </div>
+    <div class="nb-foot-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms</a>
+    </div>
+    <div class="nb-foot-links">
+      <a href="mailto:sachinraut0310@gmail.com">sachinraut0310@gmail.com</a>
+    </div>
     <p>© 2026 Sachin Raut · Mumbai, India · All rights reserved.</p>
   </div>
 </footer>
