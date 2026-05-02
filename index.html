@@ -950,8 +950,7 @@
     .gallery-overlay .go-tag { display:inline-block; margin-top:10px; padding:4px 12px; border-radius:99px; background:var(--grad); font-size:11px; font-weight:700; color:#fff; }
     html[data-theme="light"] .gallery-item { background:rgba(255,255,255,0.6); }
     html[data-theme="light"] .bp-bar { background:rgba(0,0,0,0.08); }
-    @media(max-width:900px) { .gallery-row-1 { grid-template-columns:repeat(3,1fr); } .gallery-row-2 { grid-template-columns:repeat(2,1fr); } }
-    @media(max-width:600px) { .gallery-row-1,.gallery-row-2 { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px) { .gallery-row-1 { grid-template-columns:repeat(1,1fr)!important; } }
 
     .portfolio-card { overflow: hidden; }
     .portfolio-thumb {
@@ -2307,185 +2306,119 @@
 <section id="work">
   <div class="container">
     <div data-aos="fade-up" style="text-align:center;">
-      <div class="section-label">Recent Work</div>
-      <h2 class="section-title">Our Recent <span class="gradient-text">Work</span></h2>
-      <p class="section-desc" style="margin:0 auto;max-width:480px;">A glimpse of websites built for real businesses — each one crafted for speed, SEO, and results.</p>
+      <div class="section-label">Sample Work</div>
+      <h2 class="section-title">Our Sample <span class="gradient-text">Work</span></h2>
+      <p class="section-desc" style="margin:0 auto;max-width:480px;">Live sample websites built across real industries — click any to explore the full site.</p>
     </div>
 
     <div class="portfolio-gallery" data-aos="fade-up" data-aos-delay="100">
 
-      <!-- Row 1: 4 items -->
-      <div class="gallery-row gallery-row-1">
+      <!-- 2x2 Grid — 4 Sample Projects -->
+      <div class="gallery-row gallery-row-1" style="grid-template-columns:repeat(2,1fr)!important;">
 
-        <div class="gallery-item">
-          <div class="browser-preview" style="background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);">
-            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+        <!-- 1. SkillForge — Education -->
+        <a href="education.html" target="_blank" class="gallery-item" style="text-decoration:none;">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#0a0e1a,#111829,#0d1520);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url" style="font-size:9px;color:rgba(255,255,255,0.35);padding-left:8px;">skillforge.in</div></div>
             <div class="bp-content">
-              <div style="text-align:center;padding:16px;">
-                <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-1px;">INTERIOR</div>
-                <div style="width:40px;height:2px;background:var(--grad);margin:8px auto;border-radius:2px;"></div>
-                <div style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:2px;">DESIGN STUDIO</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
-                  <div style="height:30px;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
-                  <div style="height:30px;background:rgba(255,255,255,0.04);border-radius:4px;"></div>
-                  <div style="height:30px;background:rgba(255,255,255,0.04);border-radius:4px;"></div>
-                  <div style="height:30px;background:rgba(255,255,255,0.06);border-radius:4px;"></div>
+              <div style="text-align:center;padding:20px;width:100%;">
+                <div style="font-size:9px;color:#c4ff3d;letter-spacing:3px;font-weight:700;margin-bottom:8px;">LEARNING PLATFORM</div>
+                <div style="font-size:20px;font-weight:900;color:#fff;">Skill<span style="color:#c4ff3d;">Forge</span></div>
+                <div style="margin-top:12px;display:flex;flex-direction:column;gap:5px;">
+                  <div style="height:7px;background:linear-gradient(90deg,#c4ff3d,#9bd421);border-radius:3px;width:80%;"></div>
+                  <div style="height:7px;background:rgba(196,255,61,0.15);border-radius:3px;width:55%;"></div>
+                  <div style="height:7px;background:rgba(255,255,255,0.06);border-radius:3px;width:70%;"></div>
+                </div>
+                <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+                  <div style="padding:4px 10px;background:rgba(196,255,61,0.15);border-radius:4px;font-size:9px;color:#c4ff3d;font-weight:700;">📚 Courses</div>
+                  <div style="padding:4px 10px;background:rgba(255,255,255,0.05);border-radius:4px;font-size:9px;color:rgba(255,255,255,0.4);">🏆 Certify</div>
                 </div>
               </div>
             </div>
           </div>
           <div class="gallery-overlay">
-            <h4>Aanvi Interior Website</h4>
-            <p>React · TypeScript · SEO</p>
-            <span class="go-tag">Interior Design</span>
+            <h4>SkillForge — Learning Platform</h4>
+            <p>HTML · CSS · JavaScript</p>
+            <span class="go-tag">🎓 Education</span>
           </div>
-        </div>
+        </a>
 
-        <div class="gallery-item">
-          <div class="browser-preview" style="background:linear-gradient(160deg,#0a0a0a,#1a1a2e,#16213e);">
-            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+        <!-- 2. DreamHomes — Real Estate -->
+        <a href="real-estate.html" target="_blank" class="gallery-item" style="text-decoration:none;">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#f8f9fa,#e8f0f7,#dde8f2);">
+            <div class="bp-bar" style="background:rgba(26,58,92,0.1);"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url" style="font-size:9px;color:rgba(0,0,0,0.3);padding-left:8px;">dreamhomes.in</div></div>
             <div class="bp-content">
-              <div style="text-align:center;padding:20px;">
-                <div style="font-size:11px;color:#a855f7;letter-spacing:3px;font-weight:700;margin-bottom:6px;">SAAS PLATFORM</div>
-                <div style="font-size:20px;font-weight:800;color:#fff;">Garage<span style="color:#a855f7;">Pro</span></div>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
-                  <div style="height:6px;background:linear-gradient(90deg,#7c3aed,#a855f7);border-radius:3px;width:85%;"></div>
-                  <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;width:60%;"></div>
-                  <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;width:75%;"></div>
+              <div style="text-align:center;padding:20px;width:100%;">
+                <div style="font-size:9px;color:#1a3a5c;letter-spacing:3px;font-weight:700;margin-bottom:8px;">REAL ESTATE</div>
+                <div style="font-size:18px;font-weight:900;color:#1a3a5c;">Dream<span style="color:#d4a574;">Homes</span></div>
+                <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
+                  <div style="height:36px;background:linear-gradient(135deg,rgba(26,58,92,0.12),rgba(26,58,92,0.06));border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏠</div>
+                  <div style="height:36px;background:rgba(212,165,116,0.15);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏢</div>
+                  <div style="height:36px;background:rgba(26,58,92,0.06);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏡</div>
                 </div>
-                <div style="margin-top:12px;display:flex;gap:5px;justify-content:center;">
-                  <div style="padding:4px 10px;background:rgba(124,58,237,0.3);border-radius:4px;font-size:9px;color:#a855f7;font-weight:700;">LIVE</div>
-                  <div style="padding:4px 10px;background:rgba(255,255,255,0.05);border-radius:4px;font-size:9px;color:rgba(255,255,255,0.4);">ANALYTICS</div>
+                <div style="margin-top:10px;height:6px;background:linear-gradient(90deg,#1a3a5c,#d4a574);border-radius:3px;width:75%;margin:10px auto 0;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <h4>DreamHomes — Property Portal</h4>
+            <p>HTML · CSS · JavaScript</p>
+            <span class="go-tag">🏠 Real Estate</span>
+          </div>
+        </a>
+
+        <!-- 3. LUMEN — Fashion Store -->
+        <a href="shop.html" target="_blank" class="gallery-item" style="text-decoration:none;">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#fafaf7,#f5f1eb,#ede8e0);">
+            <div class="bp-bar" style="background:rgba(26,26,26,0.07);"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url" style="font-size:9px;color:rgba(0,0,0,0.25);padding-left:8px;">lumenshop.in</div></div>
+            <div class="bp-content">
+              <div style="text-align:center;padding:20px;width:100%;">
+                <div style="font-size:9px;color:#e85d3c;letter-spacing:4px;font-weight:700;margin-bottom:6px;">FASHION & LIFESTYLE</div>
+                <div style="font-size:22px;font-weight:900;color:#1a1a1a;letter-spacing:-1px;">LUMEN</div>
+                <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+                  <div style="padding:6px 12px;background:#e85d3c;border-radius:4px;font-size:9px;color:#fff;font-weight:700;">Shop Now</div>
+                  <div style="padding:6px 12px;background:rgba(26,26,26,0.06);border-radius:4px;font-size:9px;color:#1a1a1a;">New In</div>
+                </div>
+                <div style="margin-top:10px;display:flex;gap:5px;justify-content:center;">
+                  <div style="width:22px;height:22px;background:#1a1a1a;border-radius:50%;"></div>
+                  <div style="width:22px;height:22px;background:#e85d3c;border-radius:50%;"></div>
+                  <div style="width:22px;height:22px;background:#e8dfd2;border-radius:50%;border:1px solid rgba(0,0,0,0.1);"></div>
                 </div>
               </div>
             </div>
           </div>
           <div class="gallery-overlay">
-            <h4>Garage Management SaaS</h4>
-            <p>React · Node.js · MySQL</p>
-            <span class="go-tag">SaaS / Automotive</span>
+            <h4>LUMEN — Fashion Store</h4>
+            <p>HTML · CSS · JavaScript</p>
+            <span class="go-tag">🛍️ eCommerce</span>
           </div>
-        </div>
+        </a>
 
-        <div class="gallery-item">
-          <div class="browser-preview" style="background:linear-gradient(135deg,#0d1117,#161b22,#1f2937);">
-            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
+        <!-- 4. Mega Bundle Bazzar — Exam Prep -->
+        <a href="mega-bazzar.html" target="_blank" class="gallery-item" style="text-decoration:none;">
+          <div class="browser-preview" style="background:linear-gradient(135deg,#080B16,#0E1322,#131A2C);">
+            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url" style="font-size:9px;color:rgba(255,255,255,0.3);padding-left:8px;">megabazzar.in</div></div>
             <div class="bp-content">
-              <div style="text-align:center;padding:16px;">
-                <div style="font-size:10px;color:#06b6d4;letter-spacing:2px;font-weight:700;">PORTFOLIO</div>
-                <div style="font-size:18px;font-weight:900;color:#fff;margin:6px 0;">NextJS<span style="color:#06b6d4;">.</span>Dev</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:8px;">
-                  <div style="height:24px;background:rgba(6,182,212,0.15);border-radius:3px;"></div>
-                  <div style="height:24px;background:rgba(168,85,247,0.1);border-radius:3px;"></div>
-                  <div style="height:24px;background:rgba(6,182,212,0.08);border-radius:3px;"></div>
-                </div>
-                <div style="margin-top:6px;height:2px;width:50%;background:linear-gradient(90deg,#06b6d4,#7c3aed);border-radius:2px;margin-left:auto;margin-right:auto;"></div>
-              </div>
-            </div>
-          </div>
-          <div class="gallery-overlay">
-            <h4>Headless CMS Portfolio</h4>
-            <p>Next.js · Strapi · PWA</p>
-            <span class="go-tag">Software Dev</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <div class="browser-preview" style="background:linear-gradient(140deg,#0f2027,#203a43,#2c5364);">
-            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
-            <div class="bp-content">
-              <div style="text-align:center;padding:20px;">
-                <div style="font-size:9px;color:#22d3ee;letter-spacing:3px;font-weight:700;">E-COMMERCE</div>
-                <div style="font-size:16px;font-weight:800;color:#fff;margin:8px 0;">Fashion<span style="color:#22d3ee;">Store</span></div>
-                <div style="display:flex;flex-direction:column;gap:4px;text-align:left;">
-                  <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.4);padding:5px;background:rgba(255,255,255,0.04);border-radius:4px;"><span>Product 01</span><span style="color:#22d3ee;">₹999</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.4);padding:5px;background:rgba(255,255,255,0.04);border-radius:4px;"><span>Product 02</span><span style="color:#22d3ee;">₹1,499</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="gallery-overlay">
-            <h4>Fashion eCommerce Store</h4>
-            <p>WooCommerce · WordPress</p>
-            <span class="go-tag">eCommerce</span>
-          </div>
-        </div>
-
-      </div><!-- /row 1 -->
-
-      <!-- Row 2: 3 items (wider) -->
-      <div class="gallery-row gallery-row-2">
-
-        <div class="gallery-item">
-          <div class="browser-preview" style="background:linear-gradient(135deg,#1a0533,#2d1b69,#1e3a5f);">
-            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
-            <div class="bp-content">
-              <div style="padding:20px;width:100%;">
-                <div style="font-size:9px;color:#a855f7;letter-spacing:2px;font-weight:700;margin-bottom:10px;">REAL ESTATE</div>
-                <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:12px;">Premium Property Portal</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
-                  <div style="height:36px;background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(168,85,247,0.1));border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏠</div>
-                  <div style="height:36px;background:rgba(255,255,255,0.04);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏢</div>
-                  <div style="height:36px;background:rgba(255,255,255,0.04);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px;">🏗️</div>
-                </div>
-                <div style="margin-top:10px;height:6px;background:linear-gradient(90deg,#7c3aed,#a855f7,#06b6d4);border-radius:3px;width:70%;"></div>
-              </div>
-            </div>
-          </div>
-          <div class="gallery-overlay">
-            <h4>Real Estate Property Portal</h4>
-            <p>WordPress · Custom Theme · SEO</p>
-            <span class="go-tag">Real Estate</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <div class="browser-preview" style="background:linear-gradient(135deg,#003300,#004d1a,#006622);">
-            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
-            <div class="bp-content">
-              <div style="text-align:center;padding:20px;">
-                <div style="font-size:9px;color:#10b981;letter-spacing:3px;font-weight:700;margin-bottom:8px;">RESTAURANT</div>
-                <div style="font-size:16px;font-weight:900;color:#fff;">Spice <span style="color:#10b981;">Garden</span></div>
-                <div style="font-size:9px;color:rgba(255,255,255,0.4);margin:6px 0;">Fine Indian Dining · Mumbai</div>
-                <div style="display:flex;gap:5px;justify-content:center;margin-top:10px;">
-                  <div style="padding:5px 10px;background:rgba(16,185,129,0.2);border-radius:99px;font-size:9px;color:#10b981;font-weight:700;">MENU</div>
-                  <div style="padding:5px 10px;background:rgba(255,255,255,0.06);border-radius:99px;font-size:9px;color:rgba(255,255,255,0.5);">RESERVE</div>
-                  <div style="padding:5px 10px;background:rgba(255,255,255,0.06);border-radius:99px;font-size:9px;color:rgba(255,255,255,0.5);">ORDER</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="gallery-overlay">
-            <h4>Restaurant Website</h4>
-            <p>WordPress · Online Ordering · SEO</p>
-            <span class="go-tag">Food & Restaurant</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <div class="browser-preview" style="background:linear-gradient(135deg,#1a1a2e,#f59e0b18,#16213e);">
-            <div class="bp-bar"><div class="bp-dot" style="background:#ef4444;"></div><div class="bp-dot" style="background:#f59e0b;"></div><div class="bp-dot" style="background:#10b981;"></div><div class="bp-url"></div></div>
-            <div class="bp-content">
-              <div style="text-align:center;padding:20px;">
-                <div style="font-size:9px;color:#f59e0b;letter-spacing:3px;font-weight:700;margin-bottom:8px;">EDUCATION</div>
-                <div style="font-size:15px;font-weight:800;color:#fff;">LearnPro <span style="color:#f59e0b;">Academy</span></div>
+              <div style="text-align:center;padding:16px;width:100%;">
+                <div style="font-size:9px;color:#f59e0b;letter-spacing:2px;font-weight:700;margin-bottom:8px;">EXAM PREP · ₹99</div>
+                <div style="font-size:15px;font-weight:900;color:#fff;">Mega Bundle <span style="color:#f59e0b;">Bazzar</span></div>
                 <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-                  <div style="padding:6px;background:rgba(245,158,11,0.1);border-radius:5px;border:1px solid rgba(245,158,11,0.2);font-size:9px;color:rgba(255,255,255,0.6);">📚 Courses</div>
-                  <div style="padding:6px;background:rgba(255,255,255,0.04);border-radius:5px;font-size:9px;color:rgba(255,255,255,0.4);">👥 Students</div>
-                  <div style="padding:6px;background:rgba(255,255,255,0.04);border-radius:5px;font-size:9px;color:rgba(255,255,255,0.4);">📝 Exams</div>
-                  <div style="padding:6px;background:rgba(245,158,11,0.06);border-radius:5px;border:1px solid rgba(245,158,11,0.1);font-size:9px;color:rgba(255,255,255,0.5);">🏆 Results</div>
+                  <div style="padding:5px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:4px;font-size:9px;color:#f59e0b;font-weight:600;">IIT JEE</div>
+                  <div style="padding:5px;background:rgba(245,158,11,0.06);border-radius:4px;font-size:9px;color:rgba(255,255,255,0.5);">NEET</div>
+                  <div style="padding:5px;background:rgba(255,255,255,0.04);border-radius:4px;font-size:9px;color:rgba(255,255,255,0.4);">Class 12</div>
+                  <div style="padding:5px;background:rgba(245,158,11,0.08);border-radius:4px;font-size:9px;color:#f59e0b;">Complete</div>
                 </div>
               </div>
             </div>
           </div>
           <div class="gallery-overlay">
-            <h4>E-Learning Platform</h4>
-            <p>React · Node.js · Custom LMS</p>
-            <span class="go-tag">Education</span>
+            <h4>Mega Bundle Bazzar</h4>
+            <p>HTML · CSS · JavaScript</p>
+            <span class="go-tag">📖 Education / eCommerce</span>
           </div>
-        </div>
+        </a>
 
-      </div><!-- /row 2 -->
+      </div><!-- /grid -->
 
     </div>
 
